@@ -29,8 +29,8 @@
             <nav>
                 <ul>
                     <li><a href="/">HOME</a></li>
-                    <li><a href="/about">ABOUT</a></li>
-                    <li> <a href="/contact">CONTACT</a></li>
+                    <li><a href="{{ route('about') }}">ABOUT</a></li>
+                    <li> <a href="{{ route('contact') }}">CONTACT</a></li>
                     @if (Route::has('login'))
                         @auth
                            <li> <a href="{{ route('profile') }}">{{Auth::User()->username}}</a></li
