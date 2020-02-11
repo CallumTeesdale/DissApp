@@ -14,9 +14,11 @@
             <div class="profile-data">
                 <div class="profile-image"><img src="" alt=""></div>
                 <h1>Hello, {{Auth::user()->username}}</h1>
-                <p>Balance:  ST</p>
-                <p></p>
-                <p>{{Auth::user()->email}}</p>
+                <p>Balance: {!! $balance[0] !!}  ST</p>
+            </br>
+                <h2>email</h2><p>{{Auth::user()->email}}</p>
+                <h2>course</h2><p>{{Auth::user()->course}}</p>
+                <h2>about you</h2><p>{{Auth::user()->about}}</p>
                 <a class="link" href="{{ route('surveys.create')}}"><p>Create A survey</p>
                 <a href="{{route('logout')}}" class="link" onclick="event.preventDefault(); document.getElementById('logout').submit();">Logout</a>
                 <form id="logout" action="{{route('logout')}}" method="POST" style="display:none"> {{csrf_field() }} </form>

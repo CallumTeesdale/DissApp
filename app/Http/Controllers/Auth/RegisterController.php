@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use \Web3\Contract;
+use App\EthPersonal;
 
 class RegisterController extends Controller
 {
@@ -69,11 +69,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $personal = new EthPersonal();
+        $account = $personal->createEthAccount();
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'dob' => $data['dob'],
+            'public_key' => $account,
             'priv_level' => $data['priv_level'],
             'about' => $data['about'],
             'course' => $data['course'],

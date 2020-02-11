@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Survey;
+use App\Response;
 use Illuminate\Http\Request;
+use App\ContractInteractions;
+use App\EthPersonal;
+use Illuminate\Support\Facades\Auth;
 
 class ResponseController extends Controller
 {
@@ -15,6 +19,7 @@ class ResponseController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -25,6 +30,7 @@ class ResponseController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -36,7 +42,24 @@ class ResponseController extends Controller
     public function store(Request $request)
     {
         //
+        include($_SERVER['DOCUMENT_ROOT'] . '/../app/ContractVariables.php');
+        $data = $request->getContent();
+        $decode = \json_decode($data, true);
+        $userData = \json_encode($decode['userData']);
 
+        $response = Response::create([
+            'id_survey' => $decode['survey_id'],
+            'response' => $userData,
+            'user_id' => Auth::id(),
+        ]);
+
+        if ($response->exists()) {
+            $contract = new ContractInteractions();
+            $contract->transfer(Auth::user()->public_key, 100);
+            return view('survey-response-success');
+        } else {
+            return view('survey-response-fail');
+        }
     }
 
     /**
@@ -84,5 +107,14 @@ class ResponseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function success()
+    {
+        return view('survey-response-success');
+    }
+    public function fail()
+    {
+        return view('survey-response-fail');
     }
 }

@@ -41,15 +41,21 @@
     $.ajax({
         type: "POST",
         url: "{{route('response.store')}}",
-        data: {
-        },
+        processData:false,
+        data: JSON.stringify({userData:userData, survey_id:{!!$survey->id!!}})
+        ,
         success: function(result) {
             alert('ok');
-            console.log(userData);
+            console.log("userDate="+ userData);
+            console.log("data=" + data);
+            location.href = "{{route('success')}}";
         },
         error: function(result) {
             alert('error');
+
             console.log(userData);
+            console.log(data);
+            location.href = "{{route('fail')}}";
         }
     });
 });

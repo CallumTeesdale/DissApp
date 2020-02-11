@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Survey;
+use App\ContractInteractions;
+
 
 class ProfileController extends Controller
 {
@@ -25,7 +28,9 @@ class ProfileController extends Controller
      */
     public function getProfile()
     {
+        $contract = new ContractInteractions();
+        $balance = $contract->contractGetBalance(Auth::user()->public_key);
         $surveys = Survey::where('creator_id', Auth::id())->get();
-        return view('profile', ['surveys' => $surveys]);
+        return view('profile', ['surveys' => $surveys, 'balance' => $balance]);
     }
 }

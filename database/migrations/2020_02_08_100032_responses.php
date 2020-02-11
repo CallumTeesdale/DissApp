@@ -14,7 +14,7 @@ class Responses extends Migration
     public function up()
     {
         //
-        Schema::create('response', function (Blueprint $table) {
+        Schema::create('responses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_survey');
             $table->json('response');
