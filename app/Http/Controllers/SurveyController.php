@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Survey;
+use App\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,6 +60,8 @@ class SurveyController extends Controller
     public function show($id)
     {
         //
+        $responses = Response::where('id_survey', $id)->get();
+        return view('response-data-view', ['responses' => $responses]);
     }
 
     /**

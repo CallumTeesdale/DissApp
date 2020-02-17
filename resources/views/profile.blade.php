@@ -31,6 +31,7 @@
             <ul>
                <li> <p>{{$survey->survey_title}}</p></li>
                <p>{{$survey->survey_description}}</p>
+               <a href="{{route('surveys.show',  $survey->id)}}"> View Data</a>
             </ul>
             @endforeach
 
