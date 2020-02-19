@@ -61,7 +61,34 @@ class SurveyController extends Controller
     {
         //
         $responses = Response::where('id_survey', $id)->get();
-        return view('response-data-view', ['responses' => $responses]);
+        $data = [];
+        foreach ($responses as $response) {
+            array_push($data, json_decode($response->response));
+        }
+        $nameAndData = [];
+        $numElements = count($data);
+        $arr = [];
+        foreach ($data as $dat) {
+            for ($i = 0; $i <= $numElements; $i++) {
+                $nameAndData[$dat[$i]->name] = array($dat[$i]->type, array());
+            }
+        }
+        foreach ($data as $dat) {
+            for ($i = 0; $i <= $numElements; $i++) {
+                if (array_key_exists($dat[$i]->name, $nameAndData)) {
+                    echo 'treu ';
+                    $nameAndData[$dat[$i]->name][1][0][] = $dat[$i]->userData;
+                }
+            }
+        }
+
+        var_dump($nameAndData['text-1581968386744'][1][0]);
+        var_dump($nameAndData['select-1581968388862'][1][0]);
+        die;
+
+
+
+        return view('response-data-view', ['responses' => $data, 'nameAndType' => $nameAndData]);
     }
 
     /**
