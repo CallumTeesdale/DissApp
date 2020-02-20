@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/css.css') }}" rel="stylesheet">
 </head>
-<body>
+<body id="overrides">
     <!-- Main Container -->
     <div class="container">
         <!-- Navigation -->

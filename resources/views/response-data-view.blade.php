@@ -4,24 +4,24 @@
 @section('content')
 
 <script src="/js/Chart.min.js"></script>
+
+<script src="/js/jquery.min.js"></script>
 <script src="/css/Chart.min.css"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/mdb/css/bootstrap.min.css">
+
+
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="/mdb/js/addons/datatables.min.js"></script>
+
+
 <div class="form-wrap">
     <div class="form-container">
-        <div class="chart">  <canvas id="myChart" width="50" height="50"></canvas></div>
-        @php
-            // var_dump($responses);
-            var_dump($nameAndType);
-        @endphp
-        @foreach ($responses as $r)
-            @php
-                // var_dump();
-            @endphp
-           {{-- @foreach ($r as $s)
-               @php
-               var_dump($s->userData);
-               @endphp
-           @endforeach --}}
+        @foreach ($charts as $r)
+            {!! $r !!}
         @endforeach
+
+
 
     </div>
 </div>

@@ -2,7 +2,7 @@
 /* Body */
 body {
     font-family: "Roboto", sans-serif;
-    background-color: #e07855;
+    background-color: #e07855 !important;
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
@@ -272,6 +272,16 @@ ul li:hover a {
 .surveys-container h1 {
     text-align: center;
 }
+.table-container {
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #717070;
+}
+.chart-container {
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #717070;
+}
 /* Mobile */
 @media (max-width: 320px) {
     .logo {
@@ -310,6 +320,7 @@ ul li:hover a {
         display: none;
     }
 }
+
 /* Small Tablets */
 @media (min-width: 321px) and (max-width: 767px) {
     .profile-data {
