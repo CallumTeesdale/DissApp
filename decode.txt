@@ -1,0 +1,163 @@
+Illuminate\Http\Request::__set_state(array(
+   'json' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+      'json_' => '[
+            {
+              "type": "textarea",
+              "label": "Text Area",
+              "className": "form-control",
+              "name": "textarea-1582314765616"
+            },
+            {
+              "type": "textarea",
+              "label": "Text Area",
+              "className": "form-control",
+              "name": "textarea-1582314766165"
+            }
+          ]',
+    ),
+  )),
+   'convertedFiles' => NULL,
+   'userResolver' => 
+  Closure::__set_state(array(
+  )),
+   'routeResolver' => 
+  Closure::__set_state(array(
+  )),
+   'attributes' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+    ),
+  )),
+   'request' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+      'json_' => '[
+            {
+              "type": "textarea",
+              "label": "Text Area",
+              "className": "form-control",
+              "name": "textarea-1582314765616"
+            },
+            {
+              "type": "textarea",
+              "label": "Text Area",
+              "className": "form-control",
+              "name": "textarea-1582314766165"
+            }
+          ]',
+    ),
+  )),
+   'query' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+    ),
+  )),
+   'server' => 
+  Symfony\Component\HttpFoundation\ServerBag::__set_state(array(
+     'parameters' => 
+    array (
+      'SERVER_NAME' => 'localhost',
+      'SERVER_PORT' => 8080,
+      'HTTP_HOST' => 'localhost:8080',
+      'HTTP_USER_AGENT' => 'Symfony',
+      'HTTP_ACCEPT' => 'application/json',
+      'HTTP_ACCEPT_LANGUAGE' => 'en-us,en;q=0.5',
+      'HTTP_ACCEPT_CHARSET' => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+      'REMOTE_ADDR' => '127.0.0.1',
+      'SCRIPT_NAME' => '',
+      'SCRIPT_FILENAME' => '',
+      'SERVER_PROTOCOL' => 'HTTP/1.1',
+      'REQUEST_TIME' => 1582323684,
+      'HTTP_CONTENT_LENGTH' => 447,
+      'CONTENT_TYPE' => 'application/json',
+      'PATH_INFO' => '',
+      'REQUEST_METHOD' => 'POST',
+      'REQUEST_URI' => '/surveys',
+      'QUERY_STRING' => '',
+    ),
+  )),
+   'files' => 
+  Symfony\Component\HttpFoundation\FileBag::__set_state(array(
+     'parameters' => 
+    array (
+    ),
+  )),
+   'cookies' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+    ),
+  )),
+   'headers' => 
+  Symfony\Component\HttpFoundation\HeaderBag::__set_state(array(
+     'headers' => 
+    array (
+      'host' => 
+      array (
+        0 => 'localhost:8080',
+      ),
+      'user-agent' => 
+      array (
+        0 => 'Symfony',
+      ),
+      'accept' => 
+      array (
+        0 => 'application/json',
+      ),
+      'accept-language' => 
+      array (
+        0 => 'en-us,en;q=0.5',
+      ),
+      'accept-charset' => 
+      array (
+        0 => 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+      ),
+      'content-length' => 
+      array (
+        0 => 447,
+      ),
+      'content-type' => 
+      array (
+        0 => 'application/json',
+      ),
+    ),
+     'cacheControl' => 
+    array (
+    ),
+  )),
+   'content' => '{"json_":"[\\n            {\\n              \\"type\\": \\"textarea\\",\\n              \\"label\\": \\"Text Area\\",\\n              \\"className\\": \\"form-control\\",\\n              \\"name\\": \\"textarea-1582314765616\\"\\n            },\\n            {\\n              \\"type\\": \\"textarea\\",\\n              \\"label\\": \\"Text Area\\",\\n              \\"className\\": \\"form-control\\",\\n              \\"name\\": \\"textarea-1582314766165\\"\\n            }\\n          ]"}',
+   'languages' => NULL,
+   'charsets' => NULL,
+   'encodings' => NULL,
+   'acceptableContentTypes' => NULL,
+   'pathInfo' => '/surveys',
+   'requestUri' => '/surveys',
+   'baseUrl' => '',
+   'basePath' => NULL,
+   'method' => 'POST',
+   'format' => NULL,
+   'session' => 
+  Illuminate\Session\Store::__set_state(array(
+     'id' => '7P4nd5dEGbVrusOwdlUKrYgiTsZa6kOXoW9WVYi0',
+     'name' => 'laravel_session',
+     'attributes' => 
+    array (
+      '_token' => '1D0sBIuErRJXBtD42V2HzkU0vS4RsgI3rCba19er',
+    ),
+     'handler' => 
+    Illuminate\Session\NullSessionHandler::__set_state(array(
+    )),
+     'started' => true,
+  )),
+   'locale' => NULL,
+   'defaultLocale' => 'en',
+   'preferredFormat' => NULL,
+   'isHostValid' => true,
+   'isForwardedValid' => true,
+))

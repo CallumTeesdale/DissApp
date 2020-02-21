@@ -22,6 +22,7 @@ class Surveys extends Migration
             $table->integer('category');
             $table->string('survey_title');
             $table->string('survey_description');
+            $table->dateTime('updated_at', 0);
         });
     }
 

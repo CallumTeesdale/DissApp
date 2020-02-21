@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "813a353dbf89d07646c08dfa9fea4845",
+    "content-hash": "b12deb87899330338c65c49fbf95a6a8",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4213,22 +4213,22 @@
         },
         {
             "name": "jasonmccreary/laravel-test-assertions",
-            "version": "v0.3.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jasonmccreary/laravel-test-assertions.git",
-                "reference": "a53b94e8d43dfcd913756427c937e03b99b5de12"
+                "reference": "df359cd399a9f44396e6d7ac86af9a8c1e25decc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jasonmccreary/laravel-test-assertions/zipball/a53b94e8d43dfcd913756427c937e03b99b5de12",
-                "reference": "a53b94e8d43dfcd913756427c937e03b99b5de12",
+                "url": "https://api.github.com/repos/jasonmccreary/laravel-test-assertions/zipball/df359cd399a9f44396e6d7ac86af9a8c1e25decc",
+                "reference": "df359cd399a9f44396e6d7ac86af9a8c1e25decc",
                 "shasum": ""
             },
             "require": {
                 "mockery/mockery": "^1.0",
                 "php": ">=7.2",
-                "phpunit/phpunit": "^7.5|^8.0"
+                "phpunit/phpunit": "^7.5|^8.0|^9.0"
             },
             "type": "library",
             "autoload": {
@@ -4247,7 +4247,7 @@
                 }
             ],
             "description": "A set of helpful assertions when testing Laravel applications.",
-            "time": "2020-01-03T14:22:22+00:00"
+            "time": "2020-02-14T20:10:02+00:00"
         },
         {
             "name": "mockery/mockery",

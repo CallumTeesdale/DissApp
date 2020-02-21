@@ -12,6 +12,6 @@ class Survey extends Model
      * @var array
      */
     protected $fillable = [
-        'form_data', 'category', 'creator_id', 'survey_title', 'survey_description',
+        'id', 'form_data', 'category', 'creator_id', 'survey_title', 'survey_description', 'created_at', 'updated_at'
     ];
 }

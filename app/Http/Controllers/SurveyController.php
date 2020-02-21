@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use app\GenerateCharts;
+use App\GenerateCharts;
 use App\Survey;
 use App\Response;
 use Illuminate\Http\Request;
@@ -40,6 +40,8 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         //
+        $var = var_export($request, true);
+        file_put_contents('decode.txt', $var);
         $jsondata = $request;
         $json =  \json_decode($jsondata['json_']);
         $json = \json_encode($json);
@@ -50,6 +52,13 @@ class SurveyController extends Controller
             'survey_title' => 'title',
             'survey_description' => 'desc',
         ]);
+        if ($survey->exists()) {
+            return response('success', 200)
+                ->header('Content-Type', 'text/plain');
+        } else {
+            return response('success', 400)
+                ->header('Content-Type', 'text/plain');
+        }
     }
 
     /**
@@ -62,7 +71,6 @@ class SurveyController extends Controller
     {
 
         //
-        include($_SERVER['DOCUMENT_ROOT'] . '/../app/GenerateCharts.php');
         $responses = Response::where('id_survey', $id)->get();
         $data = [];
         if ($responses->count()) {
@@ -98,7 +106,7 @@ class SurveyController extends Controller
             $charts = 'No results yet';
         }
 
-        return view('response-data-view', ['charts' => $charts]);
+        return response()->view('response-data-view', ['charts' => $charts], 200);
     }
 
     /**

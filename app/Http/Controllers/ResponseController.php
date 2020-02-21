@@ -42,9 +42,10 @@ class ResponseController extends Controller
     public function store(Request $request)
     {
         //
-        include($_SERVER['DOCUMENT_ROOT'] . '/../app/ContractVariables.php');
         $data = $request->getContent();
         $decode = \json_decode($data, true);
+        $var = var_export($request, true);
+        file_put_contents('decode.txt', $var);
         $userData = \json_encode($decode['userData']);
 
         $response = Response::create([
@@ -56,9 +57,11 @@ class ResponseController extends Controller
         if ($response->exists()) {
             $contract = new ContractInteractions();
             $contract->transfer(Auth::user()->public_key, 100);
-            return view('survey-response-success');
+            return response('success', 200)
+                ->header('Content-Type', 'text/plain');
         } else {
-            return view('survey-response-fail');
+            return response('fail', 400)
+                ->header('Content-Type', 'text/plain');
         }
     }
 
@@ -72,7 +75,7 @@ class ResponseController extends Controller
     {
         //
         $survey = Survey::find($id);
-        return view('render-survey', ['survey' => $survey]);
+        return response()->view('render-survey', ['survey' => $survey], 200);
     }
 
     /**

@@ -19,7 +19,7 @@ class Responses extends Migration
             $table->integer('id_survey');
             $table->json('response');
             $table->integer('user_id');
-            $table->dateTime('response_date')->useCurrent();
+            $table->dateTime('created_at')->useCurrent();
         });
     }
 

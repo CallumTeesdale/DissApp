@@ -1,0 +1,213 @@
+Illuminate\Http\Request::__set_state(array(
+   'json' => NULL,
+   'convertedFiles' => NULL,
+   'userResolver' => 
+  Closure::__set_state(array(
+  )),
+   'routeResolver' => 
+  Closure::__set_state(array(
+  )),
+   'attributes' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+    ),
+  )),
+   'request' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+      '{"userData":' => 
+      array (
+        '{"name":"text-1581968386744","type":"text","label":"Text Field","className":"form-control","userData":["test"' => NULL,
+      ),
+    ),
+  )),
+   'query' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+    ),
+  )),
+   'server' => 
+  Symfony\Component\HttpFoundation\ServerBag::__set_state(array(
+     'parameters' => 
+    array (
+      'DOCUMENT_ROOT' => '/Users/callum/Documents/Uni/Dissertation/laravelApp/public',
+      'REMOTE_ADDR' => '127.0.0.1',
+      'REMOTE_PORT' => '62946',
+      'SERVER_SOFTWARE' => 'PHP 7.4.2 Development Server',
+      'SERVER_PROTOCOL' => 'HTTP/1.1',
+      'SERVER_NAME' => '127.0.0.1',
+      'SERVER_PORT' => '8080',
+      'REQUEST_URI' => '/response',
+      'REQUEST_METHOD' => 'POST',
+      'SCRIPT_NAME' => '/index.php',
+      'SCRIPT_FILENAME' => '/Users/callum/Documents/Uni/Dissertation/laravelApp/public/index.php',
+      'PATH_INFO' => '/response',
+      'PHP_SELF' => '/index.php/response',
+      'HTTP_HOST' => 'localhost:8080',
+      'HTTP_CONNECTION' => 'keep-alive',
+      'CONTENT_LENGTH' => '772',
+      'HTTP_CONTENT_LENGTH' => '772',
+      'HTTP_ORIGIN' => 'http://localhost:8080',
+      'HTTP_X_CSRF_TOKEN' => 'LXJciGDwRMzd1kJL34xq622gv9DKBacNvUEoSz45',
+      'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36 Edg/80.0.361.50',
+      'CONTENT_TYPE' => 'application/x-www-form-urlencoded; charset=UTF-8',
+      'HTTP_CONTENT_TYPE' => 'application/x-www-form-urlencoded; charset=UTF-8',
+      'HTTP_ACCEPT' => '*/*',
+      'HTTP_SEC_FETCH_DEST' => 'empty',
+      'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+      'HTTP_DNT' => '1',
+      'HTTP_SEC_FETCH_SITE' => 'same-origin',
+      'HTTP_SEC_FETCH_MODE' => 'cors',
+      'HTTP_REFERER' => 'http://localhost:8080/response/9',
+      'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+      'HTTP_ACCEPT_LANGUAGE' => 'en-GB,en;q=0.9,en-US;q=0.8',
+      'HTTP_COOKIE' => 'username-localhost-8889="2|1:0|10:1580316421|23:username-localhost-8889|44:MmU4NjhhYTA2MTRjNDU3M2FkYWYyYTM4MDFhOGI2OWQ=|d29443f423d325157707e00a66f28b64c932cc67db3e2a08dd89b151d202c587"; username-localhost-8888="2|1:0|10:1582124129|23:username-localhost-8888|44:ZjM2NTYzNjFiNTliNDg4OWI5NmYzNGI4ZmYyNjE3NzA=|d2480aa1361c51f2e462ae4169be8ddd65dce02bc8f3d2b85ba1959ed4003183"; XSRF-TOKEN=eyJpdiI6IkdVMkE3b3o2MjZYWlRmK0hLcHZvXC9RPT0iLCJ2YWx1ZSI6ImEyS05VN2ZwemFrZldxYU13Y3ZRblR6OVZKN09teWRtTFwvT2k5c1k5cXpGSEhqblNHd3pSdVR3Zkh1TVZhaEVYIiwibWFjIjoiMTgwOGY1Y2Y5MmFlNGIyN2YzZGU5NDZmZjllYzcxOTljMTQzNWJkNThiZWU1ZjMwZjQ1YWJhMWMzNGViNDY0ZSJ9; laravel_session=eyJpdiI6IkdWQzkzT28yQUVrMGtkdGIrSHlYd1E9PSIsInZhbHVlIjoiUFwvZWhuaFF4TnNROGNJQ3h6RjhRbmU1NzhROG13aXhRVlVlcG9SOTJLWWZVWU5kSUVidHh5bnN3ZEN2RFpYaXoiLCJtYWMiOiI0NDY5YmUyZjdkYTM2YzA0NzFjMWNhZjE0YTUxMmM3MjVkNDlkZDA3OTExNGVhNDQ1ZTA4NzA0Mjc1MDYzNDJmIn0%3D',
+      'REQUEST_TIME_FLOAT' => 1582318335.540666,
+      'REQUEST_TIME' => 1582318335,
+    ),
+  )),
+   'files' => 
+  Symfony\Component\HttpFoundation\FileBag::__set_state(array(
+     'parameters' => 
+    array (
+    ),
+  )),
+   'cookies' => 
+  Symfony\Component\HttpFoundation\ParameterBag::__set_state(array(
+     'parameters' => 
+    array (
+      'username-localhost-8889' => NULL,
+      'username-localhost-8888' => NULL,
+      'XSRF-TOKEN' => 'LXJciGDwRMzd1kJL34xq622gv9DKBacNvUEoSz45',
+      'laravel_session' => '07giqIO5ewGybhZIytUnqUMxqJMuIl3liFnClF0W',
+    ),
+  )),
+   'headers' => 
+  Symfony\Component\HttpFoundation\HeaderBag::__set_state(array(
+     'headers' => 
+    array (
+      'host' => 
+      array (
+        0 => 'localhost:8080',
+      ),
+      'connection' => 
+      array (
+        0 => 'keep-alive',
+      ),
+      'content-length' => 
+      array (
+        0 => '772',
+      ),
+      'origin' => 
+      array (
+        0 => 'http://localhost:8080',
+      ),
+      'x-csrf-token' => 
+      array (
+        0 => 'LXJciGDwRMzd1kJL34xq622gv9DKBacNvUEoSz45',
+      ),
+      'user-agent' => 
+      array (
+        0 => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36 Edg/80.0.361.50',
+      ),
+      'content-type' => 
+      array (
+        0 => 'application/x-www-form-urlencoded; charset=UTF-8',
+      ),
+      'accept' => 
+      array (
+        0 => '*/*',
+      ),
+      'sec-fetch-dest' => 
+      array (
+        0 => 'empty',
+      ),
+      'x-requested-with' => 
+      array (
+        0 => 'XMLHttpRequest',
+      ),
+      'dnt' => 
+      array (
+        0 => '1',
+      ),
+      'sec-fetch-site' => 
+      array (
+        0 => 'same-origin',
+      ),
+      'sec-fetch-mode' => 
+      array (
+        0 => 'cors',
+      ),
+      'referer' => 
+      array (
+        0 => 'http://localhost:8080/response/9',
+      ),
+      'accept-encoding' => 
+      array (
+        0 => 'gzip, deflate, br',
+      ),
+      'accept-language' => 
+      array (
+        0 => 'en-GB,en;q=0.9,en-US;q=0.8',
+      ),
+      'cookie' => 
+      array (
+        0 => 'username-localhost-8889="2|1:0|10:1580316421|23:username-localhost-8889|44:MmU4NjhhYTA2MTRjNDU3M2FkYWYyYTM4MDFhOGI2OWQ=|d29443f423d325157707e00a66f28b64c932cc67db3e2a08dd89b151d202c587"; username-localhost-8888="2|1:0|10:1582124129|23:username-localhost-8888|44:ZjM2NTYzNjFiNTliNDg4OWI5NmYzNGI4ZmYyNjE3NzA=|d2480aa1361c51f2e462ae4169be8ddd65dce02bc8f3d2b85ba1959ed4003183"; XSRF-TOKEN=eyJpdiI6IkdVMkE3b3o2MjZYWlRmK0hLcHZvXC9RPT0iLCJ2YWx1ZSI6ImEyS05VN2ZwemFrZldxYU13Y3ZRblR6OVZKN09teWRtTFwvT2k5c1k5cXpGSEhqblNHd3pSdVR3Zkh1TVZhaEVYIiwibWFjIjoiMTgwOGY1Y2Y5MmFlNGIyN2YzZGU5NDZmZjllYzcxOTljMTQzNWJkNThiZWU1ZjMwZjQ1YWJhMWMzNGViNDY0ZSJ9; laravel_session=eyJpdiI6IkdWQzkzT28yQUVrMGtkdGIrSHlYd1E9PSIsInZhbHVlIjoiUFwvZWhuaFF4TnNROGNJQ3h6RjhRbmU1NzhROG13aXhRVlVlcG9SOTJLWWZVWU5kSUVidHh5bnN3ZEN2RFpYaXoiLCJtYWMiOiI0NDY5YmUyZjdkYTM2YzA0NzFjMWNhZjE0YTUxMmM3MjVkNDlkZDA3OTExNGVhNDQ1ZTA4NzA0Mjc1MDYzNDJmIn0%3D',
+      ),
+    ),
+     'cacheControl' => 
+    array (
+    ),
+  )),
+   'content' => '{"userData":[{"name":"text-1581968386744","type":"text","label":"Text Field","className":"form-control","userData":["test"]},{"name":"textarea-1581968387418","type":"textarea","label":"Text Area","className":"form-control","userData":["testtttttt"]},{"name":"hidden-1581968388128","type":"hidden","userData":[""]},{"name":"select-1581968388862","type":"select","label":"Select","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"className":"form-control","userData":["option-1"]},{"name":"checkbox-group-1581968391147","type":"checkbox-group","label":"Checkbox Group","values":[{"label":"Option 1","value":"option-1","selected":true}],"userData":["option-1"]}],"survey_id":9}',
+   'languages' => NULL,
+   'charsets' => NULL,
+   'encodings' => NULL,
+   'acceptableContentTypes' => NULL,
+   'pathInfo' => '/response',
+   'requestUri' => '/response',
+   'baseUrl' => '',
+   'basePath' => NULL,
+   'method' => 'POST',
+   'format' => NULL,
+   'session' => 
+  Illuminate\Session\Store::__set_state(array(
+     'id' => '07giqIO5ewGybhZIytUnqUMxqJMuIl3liFnClF0W',
+     'name' => 'laravel_session',
+     'attributes' => 
+    array (
+      '_token' => 'LXJciGDwRMzd1kJL34xq622gv9DKBacNvUEoSz45',
+      '_flash' => 
+      array (
+        'old' => 
+        array (
+        ),
+        'new' => 
+        array (
+        ),
+      ),
+      '_previous' => 
+      array (
+        'url' => 'http://localhost:8080/response/9',
+      ),
+      'login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d' => 1,
+    ),
+     'handler' => 
+    Illuminate\Session\FileSessionHandler::__set_state(array(
+       'files' => 
+      Illuminate\Filesystem\Filesystem::__set_state(array(
+      )),
+       'path' => '/Users/callum/Documents/Uni/Dissertation/laravelApp/storage/framework/sessions',
+       'minutes' => '120',
+    )),
+     'started' => true,
+  )),
+   'locale' => NULL,
+   'defaultLocale' => 'en',
+   'preferredFormat' => NULL,
+   'isHostValid' => true,
+   'isForwardedValid' => true,
+))
