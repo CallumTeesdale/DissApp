@@ -9,8 +9,6 @@
 
     <title>Surve</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +16,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/css.css') }}" rel="stylesheet">
+
+
+
+
 </head>
 <body id="overrides">
     <!-- Main Container -->
@@ -41,8 +43,9 @@
                 </ul>
             </nav>
         </header>
-        @yield('content')
+
     </div>
     <!-- Main Container Ends -->
+    @yield('content')
 </body>
 </html>

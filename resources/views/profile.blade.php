@@ -28,11 +28,13 @@
         <div class="surveys-container">
             <h1>Your Surveys</h1>
             @foreach ($surveys as $survey)
+            <button onclick="myFunction('{{$survey->id}}')" class="g-button block bl">{{$survey->survey_title}}</button>
+            <div id="{{$survey->id}}" class="hide accordion-container">
             <ul>
-               <li> <p>{{$survey->survey_title}}</p></li>
                <p>{{$survey->survey_description}}</p>
                <a href="{{route('surveys.show',  $survey->id)}}"> View Data</a>
             </ul>
+        </div>
             @endforeach
 
 
@@ -40,4 +42,18 @@
     </div>
 
 </section>
+<script>
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("accordion-show") == -1) {
+            x.className += " accordion-show";
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace("black", "accordion-active");
+        } else {
+            x.className = x.className.replace(" accordion-show", "");
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace("accordion-active", "black");
+        }
+    }
+</script>
 @endsection

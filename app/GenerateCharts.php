@@ -14,31 +14,34 @@ class GenerateCharts
         foreach ($array as $key => $value) {
 
             if ($array[$key][0] == 'text' || $array[$key][0] == 'textarea') {
-                $table = '<div class="table-container"><table id="table' . $counter . '" class="table table-striped table-bordered table-sm" cellspacing="0">
+
+                $table = '
+                <button onclick="myFunction(\'' . $key . '\')" class="g-button block bl">' . $key . '</button>
+                <div id="' . $key . '" class="hide accordion-container">
+                <div class="table-container"><table id="t' . $counter . '" class="table table-striped table-bordered table-sm" cellspacing="0">
                 <thead>
                   <tr>
-                  <th class="th-sm">#
+                  <th class="w-2">#
                     </th>
-                    <th class="th-sm">' . $key . '
+                    <th class="w-98">' . $key . '
                     </th>
                     </tr>
                     </thead>
+                    <tbody>
                     ';
 
                 foreach ($array[$key][1][0] as $content) {
 
 
-                    $table .= '<tbody>
-
-                            <tr>
-                            <td>' . $counter2 . '</td>
-                              <td>' . $content[0] . '</td></tr>';
+                    $table .= '<tr><td>' . $counter2 . '</td><td>' . $content[0] . '</td></tr>';
                     $counter2++;
                 }
-                $table .= '</tbody></div><script>$(document).ready(function () {
-                        $(\'#table' . $counter . '\').DataTable();
-                        $(\'.dataTables_length\').addClass(\'bs-select\');
-                      });</script>';
+                $table .= '</tbody></table></div></div>';
+                $table .= '<head><script>$(document).ready(function () {
+                    $(\'#t' . $counter . '\').DataTable({
+                        "pageLength": 10
+                    });
+                  });</script></head>';
                 array_push($charts, $table);
                 $counter2 = 1;
             }
@@ -52,7 +55,8 @@ class GenerateCharts
                 $data = array_count_values($labels);
                 $labels = array_unique($labels);
                 $numberOfUnique = count($labels);
-                $chart = '<div class="chart-container">  <canvas id="myChart' . $counter . '" ></canvas></div>';
+                $chart = '<button onclick="myFunction(\'' . $key . '\')" class="g-button block bl">' . $key . '</button>
+                <div id="' . $key . '" class="hide accordion-container"><div class="chart-container">  <canvas id="myChart' . $counter . '" ></canvas></div></div>';
                 $merge = array_merge(array_flip($labels), $data);
 
                 $string = '';
@@ -99,13 +103,8 @@ class GenerateCharts
                         }]
                     },
                     options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
+
+                        animateRotate: true
                     }
                 });
                 </script>';

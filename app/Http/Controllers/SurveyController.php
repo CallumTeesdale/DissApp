@@ -60,40 +60,45 @@ class SurveyController extends Controller
      */
     public function show($id)
     {
+
         //
         include($_SERVER['DOCUMENT_ROOT'] . '/../app/GenerateCharts.php');
         $responses = Response::where('id_survey', $id)->get();
         $data = [];
-        foreach ($responses as $response) {
-            array_push($data, json_decode($response->response));
-        }
-        $nameAndData = [];
-        $numElements = count($data);
-        $arr = [];
-        foreach ($data as $dat) {
-            for ($i = 0; $i <= $numElements; $i++) {
-                $nameAndData[$dat[$i]->name] = array($dat[$i]->type, array());
+        if ($responses->count()) {
+            foreach ($responses as $response) {
+                array_push($data, json_decode($response->response));
             }
-        }
-        foreach ($data as $dat) {
-            for ($i = 0; $i <= $numElements; $i++) {
-                if (array_key_exists($dat[$i]->name, $nameAndData)) {
-                    $nameAndData[$dat[$i]->name][1][0][] = $dat[$i]->userData;
+            $nameAndData = [];
+            $numElements = count($data[0]);
+            $arr = [];
+            foreach ($data as $dat) {
+
+                for ($i = 0; $i < $numElements; $i++) {
+                    $nameAndData[$dat[$i]->name] = array($dat[$i]->type, array());
                 }
             }
+            foreach ($data as $dat) {
+                for ($i = 0; $i < $numElements; $i++) {
+                    if (array_key_exists($dat[$i]->name, $nameAndData)) {
+                        $nameAndData[$dat[$i]->name][1][0][] = $dat[$i]->userData;
+                    }
+                }
+            }
+
+            // var_dump($nameAndData['text-1581968386744'][1][0]);
+            // var_dump($nameAndData['select-1581968388862'][1][0]);
+            $charts = new GenerateCharts();
+            $charts = $charts->GenerateCharts($nameAndData);
+            // var_dump($nameAndData);
+            // var_dump($charts);
+            // die;
+
+        } else {
+            $charts = 'No results yet';
         }
 
-        // var_dump($nameAndData['text-1581968386744'][1][0]);
-        // var_dump($nameAndData['select-1581968388862'][1][0]);
-        $charts = new GenerateCharts();
-        $charts = $charts->GenerateCharts($nameAndData);
-        // var_dump($nameAndData);
-        // var_dump($charts);
-        // die;
-
-
-
-        return view('response-data-view', ['responses' => $data, 'charts' => $charts]);
+        return view('response-data-view', ['charts' => $charts]);
     }
 
     /**
