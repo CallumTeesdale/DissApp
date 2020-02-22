@@ -27,8 +27,7 @@ jobs:
          source ~/.profile
         npm install -g ganache-cli
     - name: Run Ganache
-      run: npm ganache-cli
-        
+      run:  ganache-cli@6.9.1      
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
