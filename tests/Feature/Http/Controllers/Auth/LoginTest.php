@@ -4,91 +4,159 @@ namespace Tests\Feature\Http\Controllers\Auth;
 
 use App\User;
 use Tests\TestCase;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * The login form can be displayed.
-     *
-     * @return void
-     */
-    public function testLoginFormDisplayed()
+    protected function successfulLoginRoute()
     {
-        $response = $this->get('/login');
+        return route('profile');
+    }
 
-        $response->assertStatus(200);
+    protected function loginGetRoute()
+    {
+        return route('login');
+    }
+
+    protected function loginPostRoute()
+    {
+        return route('login');
+    }
+
+    protected function logoutRoute()
+    {
+        return route('logout');
+    }
+
+    protected function successfulLogoutRoute()
+    {
+        return '/';
+    }
+
+    protected function guestMiddlewareRoute()
+    {
+        return route('profile');
+    }
+
+    protected function getTooManyLoginAttemptsMessage()
+    {
+        return sprintf('/^%s$/', str_replace('\:seconds', '\d+', preg_quote(__('auth.throttle'), '/')));
+    }
+
+    public function testUserCanViewALoginForm()
+    {
+        $response = $this->get($this->loginGetRoute());
+
+        $response->assertSuccessful();
         $response->assertViewIs('auth.login');
     }
 
-    /**
-     * A valid user can be logged in.
-     *
-     * @return void
-     */
-    public function test_user_cannot_view_a_login_form_when_authenticatedr()
+    public function testUserCannotViewALoginFormWhenAuthenticated()
     {
-
         $user = factory(User::class)->make();
 
-        $response = $this->actingAs($user)->get('/login');
+        $response = $this->actingAs($user)->get($this->loginGetRoute());
 
-        $response->assertRedirect('/profile');
+        $response->assertRedirect($this->guestMiddlewareRoute());
     }
-    public function test_user_can_login_with_correct_credentials()
+
+    public function testUserCanLoginWithCorrectCredentials()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'test'),
+            'password' => Hash::make($password = 'i-love-laravel'),
         ]);
 
-        $response = $this->post('/login', [
+        $response = $this->post($this->loginPostRoute(), [
             'username' => $user->username,
             'password' => $password,
         ]);
 
-        $response->assertRedirect('/profile');
+        $response->assertRedirect($this->successfulLoginRoute());
         $this->assertAuthenticatedAs($user);
     }
 
-    /**
-     * An invalid user cannot be logged in.
-     *
-     * @return void
-     */
-    public function test_user_cannot_login_with_incorrect_password()
+    public function testUserCannotLoginWithIncorrectPassword()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt('test'),
+            'password' => Hash::make('i-love-laravel'),
         ]);
 
-        $response = $this->from('/login')->post('/login', [
+        $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
             'username' => $user->username,
-            'password' => 'invalid',
+            'password' => 'invalid-password',
         ]);
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect($this->loginGetRoute());
         $response->assertSessionHasErrors('username');
         $this->assertTrue(session()->hasOldInput('username'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
     }
 
-    /**
-     * A logged in user can be logged out.
-     *
-     * @return void
-     */
-    public function testLogoutAnAuthenticatedUser()
+    public function testUserCannotLoginWithUsernameThatDoesNotExist()
     {
-        $user = factory(User::class)->create();
+        $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+            'username' => 'nouser',
+            'password' => 'invalid-password',
+        ]);
 
-        $response = $this->actingAs($user)->post('/logout');
+        $response->assertRedirect($this->loginGetRoute());
+        $response->assertSessionHasErrors('username');
+        $this->assertTrue(session()->hasOldInput('username'));
+        $this->assertFalse(session()->hasOldInput('password'));
+        $this->assertGuest();
+    }
 
-        $response->assertStatus(302);
+    public function testUserCanLogout()
+    {
+        $this->be(factory(User::class)->create());
 
+        $response = $this->post($this->logoutRoute());
+
+        $response->assertRedirect($this->successfulLogoutRoute());
+        $this->assertGuest();
+    }
+
+    public function testUserCannotLogoutWhenNotAuthenticated()
+    {
+        $response = $this->post($this->logoutRoute());
+
+        $response->assertRedirect($this->successfulLogoutRoute());
+        $this->assertGuest();
+    }
+
+    public function testUserCannotMakeMoreThanFiveAttemptsInOneMinute()
+    {
+        $user = factory(User::class)->create([
+            'password' => Hash::make($password = 'i-love-laravel'),
+        ]);
+
+        foreach (range(0, 5) as $_) {
+            $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+                'username' => $user->username,
+                'password' => 'invalid-password',
+            ]);
+        }
+
+        $response->assertRedirect($this->loginGetRoute());
+        $response->assertSessionHasErrors('username');
+        $this->assertRegExp(
+            $this->getTooManyLoginAttemptsMessage(),
+            collect(
+                $response
+                    ->baseResponse
+                    ->getSession()
+                    ->get('errors')
+                    ->getBag('default')
+                    ->get('username')
+            )->first()
+        );
+        $this->assertTrue(session()->hasOldInput('username'));
+        $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
     }
 }

@@ -37,8 +37,10 @@ class ContractInteractions
         //use the contract object to call the balanceOf function in the contract
         $contract->at($this->contractAddress)->call('balanceOf', $account, function ($err, $balance) use (&$accountBalance) {
             if ($err !== null) {
+                // @codeCoverageIgnoreStart
                 throw $err;
                 $accountBalance = 0;
+                // @codeCoverageIgnoreStop
             }
             if ($balance) {
                 $accountBalance = $balance;

@@ -59,10 +59,14 @@ class ResponseController extends Controller
             $contract->transfer(Auth::user()->public_key, 100);
             return response('success', 200)
                 ->header('Content-Type', 'text/plain');
-        } else {
+        }
+        // @codeCoverageIgnoreStart
+        else {
+
             return response('fail', 400)
                 ->header('Content-Type', 'text/plain');
         }
+        // @codeCoverageIgnoreStop
     }
 
     /**

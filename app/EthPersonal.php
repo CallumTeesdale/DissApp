@@ -18,8 +18,10 @@ class EthPersonal
         //create the account
         $personal->newAccount('123456', function ($err, $account) use (&$newAccount, &$accountArr) {
             if ($err !== null) {
+                // @codeCoverageIgnoreStart
                 echo 'Error: ' . $err->getMessage();
                 return;
+                // @codeCoverageIgnoreStop
             }
             $newAccount = $account;
         });
@@ -31,8 +33,10 @@ class EthPersonal
         $personal = $this->web3->personal;
         $personal->unlockAccount($account, '123456', function ($err, $unlocked) {
             if ($err !== null) {
+                // @codeCoverageIgnoreStart
                 echo 'Error: ' . $err->getMessage();
                 return;
+                // @codeCoverageIgnoreStop
             }
             if ($unlocked) {
 
@@ -43,19 +47,6 @@ class EthPersonal
             }
         });
     }
-    public function getBalance($account)
-    {
-        // get balance
-        $accountBalance = '';
-        $this->web3->eth->getBalance($account, function ($err, $balance) use (&$accountBalance) {
-            if ($err !== null) {
-                echo 'Error: ' . $err->getMessage();
-                return;
-            }
-            $accountBalance = $balance->toString();
-        });
-        return $accountBalance;
-    }
 
     public function lockAccount($account)
     {
@@ -63,8 +54,10 @@ class EthPersonal
         $personal = $this->web3->personal;
         $personal->lockAccount($account, function ($err, $locked) {
             if ($err !== null) {
+                // @codeCoverageIgnoreStart
                 echo 'Error: ' . $err->getMessage();
                 return;
+                // @codeCoverageIgnoreStop
             }
             if ($locked) {
                 // echo 'New account is locked!' . PHP_EOL;

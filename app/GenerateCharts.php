@@ -75,9 +75,12 @@ class GenerateCharts
                 for ($i = 0; $i < $numberOfUnique; $i++) {
                     if ($i < $numberOfUnique) {
                         $chart  .= '\'' . $labels[$i] . '\',';
-                    } else {
+                    }
+                    // @codeCoverageIgnoreStart
+                    else {
                         $chart  .= '\'' . $labels[$i] . '\'';
                     }
+                    // @codeCoverageIgnoreStop
                 }
                 $chart .= '],
                         datasets: [{
