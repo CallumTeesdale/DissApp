@@ -27,7 +27,7 @@ jobs:
          source ~/.profile
         npm install -g ganache-cli
     - name: Run Ganache
-      run: ganache-cli
+      run: npm ganache-cli
         
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
