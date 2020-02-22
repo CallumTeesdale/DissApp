@@ -19,6 +19,11 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+    - name: Install ganache
+      run: npm install -g ganache-cli
+    - name: Run Ganache
+      run: ganache-cli
+        
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
