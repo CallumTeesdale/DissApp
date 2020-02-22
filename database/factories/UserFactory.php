@@ -11,7 +11,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password' => bcrypt($faker->password),
         'email' => $faker->safeEmail,
         'dob' => $faker->date(),
-        'public_key' => $faker->word,
+        'public_key' => '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1',
         'priv_level' => $faker->randomNumber(),
         'about' => $faker->word,
         'course' => $faker->word,

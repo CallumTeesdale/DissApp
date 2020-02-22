@@ -83,13 +83,17 @@ class SurveyController extends Controller
             foreach ($data as $dat) {
 
                 for ($i = 0; $i < $numElements; $i++) {
-                    $nameAndData[$dat[$i]->name] = array($dat[$i]->type, array());
+                    if (property_exists($dat[$i], 'name')) {
+                        $nameAndData[$dat[$i]->name] = array($dat[$i]->type, array());
+                    }
                 }
             }
             foreach ($data as $dat) {
                 for ($i = 0; $i < $numElements; $i++) {
-                    if (array_key_exists($dat[$i]->name, $nameAndData)) {
-                        $nameAndData[$dat[$i]->name][1][0][] = $dat[$i]->userData;
+                    if (property_exists($dat[$i], 'name')) {
+                        if (array_key_exists($dat[$i]->name, $nameAndData)) {
+                            $nameAndData[$dat[$i]->name][1][0][] = $dat[$i]->userData;
+                        }
                     }
                 }
             }

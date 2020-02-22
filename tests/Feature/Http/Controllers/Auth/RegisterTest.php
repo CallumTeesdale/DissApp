@@ -152,7 +152,6 @@ class RegisterTest extends TestCase
 
     public function testUserCannotRegisterWithoutPassword()
     {
-        $user = factory(User::class)->create();
         $response = $this->from($this->registerGetRoute())->post($this->registerPostRoute(), [
             'username' => '123',
             'password' => '',

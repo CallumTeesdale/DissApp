@@ -44,7 +44,7 @@ class ResponseController extends Controller
         //
         $data = $request->getContent();
         $decode = \json_decode($data, true);
-        $var = var_export($request, true);
+        $var = var_export($decode, true);
         file_put_contents('decode.txt', $var);
         $userData = \json_encode($decode['userData']);
 
