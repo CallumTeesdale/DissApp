@@ -20,7 +20,12 @@ jobs:
         mkdir -p database
         touch database/database.sqlite
     - name: Install ganache
-      run: npm install -g ganache-cli
+      run: |
+        mkdir ~/.npm-global
+         npm config set prefix '~/.npm-global'
+         export PATH=~/.npm-global/bin:$PATH
+         source ~/.profile
+        npm install -g ganache-cli
     - name: Run Ganache
       run: ganache-cli
         
