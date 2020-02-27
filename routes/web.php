@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
-Route::get('/response/success', 'ResponseController@success')->name('success');
-Route::get('/response/fail', 'ResponseController@fail')->name('fail');
+Route::get('/response/success', 'ResponseController@success')->name('successResponse');
+Route::get('/response/fail', 'ResponseController@fail')->name('failResponse');
 
 Auth::routes();
 

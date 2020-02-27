@@ -48,7 +48,8 @@
             alert('ok');
             console.log("userDate="+ userData);
             console.log("data=" + data);
-            //location.href = "{{route('success')}}";
+            var url = {{ route('generic-response-view', result) }};
+            window.location.href = {{ route('generic-response-view', result) }};
         },
         error: function(result) {
             alert('error');

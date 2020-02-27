@@ -9,6 +9,7 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery-ui.min.js"></script>
 <script src="/js/form-builder.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script>
     $.ajaxSetup({
         headers: {
@@ -20,9 +21,10 @@
         options = {
             dataType: 'json',
             disabledAttrs: ["access", "className", "description", "max", "maxlength", "min", "multiple", "name", "other", "rows", "step", "style", "subtype", "placeholder"],
-            disableFields: ['autocomplete', 'button', 'file'],
-            //disabledActionButtons: ['data'],
+            disableFields: ['autocomplete', 'button', 'file', 'hidden'],
+            disabledActionButtons: ['data'],
             controlOrder: ['header', 'paragraph', 'text', 'textarea'],
+            editOnAdd: true,
             stickyControls: {
                 enable: true
             },
@@ -33,11 +35,12 @@
                     type: 'POST',
                     url: '{{route('surveys.store')}}',
                     data: "json = " + fullJSON,
-                    success: function() {
+                    success: function(data) {
                         alert('success')
                         console.log(fullJSON);
+                        //location.href = "{{route('success')}}";
                     },
-                    error: function() {
+                    error: function(data) {
                         alert('fail');
                     }
                 });

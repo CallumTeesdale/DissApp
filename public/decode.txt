@@ -3,20 +3,116 @@ array (
   array (
     0 => 
     array (
-      'type' => 'header',
-      'label' => 'Header',
-    ),
-    1 => 
-    array (
-      'name' => 'text-1582305226597',
+      'name' => 'text-1582799968905',
       'type' => 'text',
       'label' => 'Text Field',
+      'required' => true,
       'className' => 'form-control',
       'userData' => 
       array (
-        0 => 'test 4',
+        0 => 'test',
+      ),
+    ),
+    1 => 
+    array (
+      'name' => 'textarea-1582799969753',
+      'type' => 'textarea',
+      'label' => 'Text Area',
+      'className' => 'form-control',
+      'userData' => 
+      array (
+        0 => 'test',
+      ),
+    ),
+    2 => 
+    array (
+      'name' => 'select-1582799970466',
+      'type' => 'select',
+      'label' => 'Select',
+      'values' => 
+      array (
+        0 => 
+        array (
+          'label' => 'Option 1',
+          'value' => 'option-1',
+          'selected' => true,
+        ),
+        1 => 
+        array (
+          'label' => 'Option 2',
+          'value' => 'option-2',
+        ),
+        2 => 
+        array (
+          'label' => 'Option 3',
+          'value' => 'option-3',
+        ),
+      ),
+      'className' => 'form-control',
+      'userData' => 
+      array (
+        0 => 'option-3',
+      ),
+    ),
+    3 => 
+    array (
+      'name' => 'radio-group-1582799972729',
+      'type' => 'radio-group',
+      'label' => 'Radio Group',
+      'values' => 
+      array (
+        0 => 
+        array (
+          'label' => 'Option 1',
+          'value' => 'option-1',
+        ),
+        1 => 
+        array (
+          'label' => 'Option 2',
+          'value' => 'option-2',
+        ),
+        2 => 
+        array (
+          'label' => 'Option 3',
+          'value' => 'option-3',
+        ),
+      ),
+      'userData' => 
+      array (
+        0 => 'option-2',
+      ),
+    ),
+    4 => 
+    array (
+      'name' => 'checkbox-group-1582799975625',
+      'type' => 'checkbox-group',
+      'label' => 'Checkbox Group',
+      'values' => 
+      array (
+        0 => 
+        array (
+          'label' => 'Option 1',
+          'value' => 'option-1',
+          'selected' => true,
+        ),
+        1 => 
+        array (
+          'label' => 'Option 2',
+          'value' => 'option-2',
+        ),
+        2 => 
+        array (
+          'label' => 'Option 3',
+          'value' => 'option-3',
+        ),
+      ),
+      'userData' => 
+      array (
+        0 => 'option-1',
+        1 => 'option-2',
+        2 => 'option-3',
       ),
     ),
   ),
-  'survey_id' => 12,
+  'survey_id' => 17,
 )
