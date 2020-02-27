@@ -48,15 +48,14 @@
             alert('ok');
             console.log("userDate="+ userData);
             console.log("data=" + data);
-            var url = {{ route('generic-response-view', result) }};
-            window.location.href = {{ route('generic-response-view', result) }};
+            location.href = "{{route('successResponse')}}";
         },
         error: function(result) {
             alert('error');
 
             console.log(userData);
             console.log(data);
-            location.href = "{{route('fail')}}";
+            location.href = "{{route('failResponse')}}";
         }
     });
 });

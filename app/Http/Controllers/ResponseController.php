@@ -78,8 +78,16 @@ class ResponseController extends Controller
     public function show($id)
     {
         //
+
+
         $survey = Survey::find($id);
-        return response()->view('render-survey', ['survey' => $survey], 200);
+        $responses = Response::where('id_survey', $id)->get();
+        $exists = $responses->where('user_id', Auth::id());
+        if ($exists->count()) {
+            return view('survey-response-fail');
+        } else {
+            return response()->view('render-survey', ['survey' => $survey], 200);
+        }
     }
 
     /**
