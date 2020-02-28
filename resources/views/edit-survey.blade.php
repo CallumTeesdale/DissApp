@@ -3,6 +3,11 @@
 @section('content')
 <div class="form-wrap">
     <div class="form-container">
+        <form action="" class="login-form">
+            <input class="username" type="title" name="title" id="title" placeholder="Title">
+            <input class="username" name="description" id="description" cols="30" rows="5" placeholder="Description">
+        </form>
+        <br>
         <div id="build-wrap"></div>
     </div>
 </div>
@@ -29,21 +34,29 @@
                 enable: true
             },
             onSave: function() {
-                console.log("save pressed")
+                console.log("save pressed");
                 var fullJSON = formBuilder.actions.getData('json', true);
+                var title = $('#title').val();
+                var description = $('#description').val();
+                if(title && description){
                 $.ajax({
                     type: 'POST',
-                    url: '{{route('surveys.store')}}',
-                    data: "json = " + fullJSON,
+                    url: "{{route('surveys.store')}}",
+                    data: JSON.stringify({json:fullJSON, title:title, description:description}),
                     success: function(data) {
                         alert('success')
                         console.log(fullJSON);
-                        //location.href = "{{route('success')}}";
+                        //location.href = "{{route('successResponse')}}";
                     },
                     error: function(data) {
                         alert('fail');
                     }
                 });
+                }
+                else{
+                    $('#title').val('Cannot be empty')
+                    $('#description').val('Cannot be empty');
+                }
             }
         };
         var formBuilder = $(fbEditor).formBuilder(options);

@@ -124,7 +124,7 @@ class ResponseControllerTest extends TestCase
      */
     public function success_returns_an_ok_response()
     {
-        $response = $this->get(route('success'));
+        $response = $this->get(route('successResponse'));
 
         $response->assertOk();
         $response->assertViewIs('survey-response-success');
@@ -134,7 +134,8 @@ class ResponseControllerTest extends TestCase
      */
     public function fail_returns_ok_response_response()
     {
-        $response = $this->get(route('fail'));
+        $response = $this->get(route('failResponse'));
+
         $response->assertOk();
         $response->assertViewIs('survey-response-fail');
     }

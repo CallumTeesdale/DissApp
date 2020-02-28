@@ -11,12 +11,12 @@ class EthPersonal
         $this->web3 = new Web3('http://localhost:8545');
     }
 
-    public function createEthAccount()
+    public function createEthAccount($password)
     {
         $newAccount = '';
         $personal = $this->web3->personal;
         //create the account
-        $personal->newAccount('123456', function ($err, $account) use (&$newAccount, &$accountArr) {
+        $personal->newAccount($password, function ($err, $account) use (&$newAccount, &$accountArr) {
             if ($err !== null) {
                 // @codeCoverageIgnoreStart
                 echo 'Error: ' . $err->getMessage();
@@ -27,11 +27,11 @@ class EthPersonal
         });
         return $newAccount;
     }
-    public function unlockAccount($account)
+    public function unlockAccount($account, $password)
     {
         //unlock the account so transactions can take place
         $personal = $this->web3->personal;
-        $personal->unlockAccount($account, '123456', function ($err, $unlocked) {
+        $personal->unlockAccount($account, $password, function ($err, $unlocked) {
             if ($err !== null) {
                 // @codeCoverageIgnoreStart
                 echo 'Error: ' . $err->getMessage();

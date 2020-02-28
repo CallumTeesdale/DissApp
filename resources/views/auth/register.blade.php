@@ -58,12 +58,14 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <br>
 
 
 
                                 <button type="submit" class="register">
                                     {{ __('Register') }}
                                 </button>
+                            </form>
 
 </div>
 </section>

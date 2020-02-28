@@ -197,6 +197,7 @@ class GenerateCharts
                     }
                     $string = '';
                 }
+                $numberOfUnique = count($labels);
                 $flippedLabels = array_flip($labels);
                 $flippedLabels = array_fill_keys(array_keys($flippedLabels), 0);
                 $data = [];

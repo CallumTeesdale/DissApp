@@ -44,8 +44,6 @@ class ResponseController extends Controller
         //
         $data = $request->getContent();
         $decode = \json_decode($data, true);
-        $var = var_export($decode, true);
-        file_put_contents('decode.txt', $var);
         $userData = \json_encode($decode['userData']);
 
         $response = Response::create([
@@ -56,13 +54,13 @@ class ResponseController extends Controller
 
         if ($response->exists()) {
             $contract = new ContractInteractions();
-            $contract->transfer(Auth::user()->public_key, 100);
+            $contract->transfer(Auth::user()->public_key, '123456', 100);
+
             return response('success', 200)
                 ->header('Content-Type', 'text/plain');
         }
         // @codeCoverageIgnoreStart
         else {
-
             return response('fail', 400)
                 ->header('Content-Type', 'text/plain');
         }
@@ -84,7 +82,8 @@ class ResponseController extends Controller
         $responses = Response::where('id_survey', $id)->get();
         $exists = $responses->where('user_id', Auth::id());
         if ($exists->count()) {
-            return view('survey-response-fail');
+            $message = 'You can\'t answer the same survey more than once';
+            return view('survey-response-fail', ['message' => $message]);
         } else {
             return response()->view('render-survey', ['survey' => $survey], 200);
         }

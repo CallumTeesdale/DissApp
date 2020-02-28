@@ -49,13 +49,13 @@ class ContractInteractions
         return $accountBalance;
     }
 
-    public function transfer($toAccount, $ammount)
+    public function transfer($toAccount, $password, $ammount)
     {
         //create a web3/contract object
         $contract = new Contract($this->web3->provider, $this->Abi);
         $AccountsEth = new EthPersonal();
         $contractOwner = $this->contractOwner;
-        $AccountsEth->unlockAccount($contractOwner);
+        $AccountsEth->unlockAccount($contractOwner, $password);
         $contract->at($this->contractAddress)->send('transfer', $toAccount, $ammount, [
             'from' => $contractOwner,
             'gas' => '0x200b20'
@@ -64,7 +64,7 @@ class ContractInteractions
                 throw $err;
             }
             if ($result) {
-                echo "\nTransaction has made:) id: " . $result . "\n";
+                echo "\nTransaction made: id: " . $result . "\n";
             }
             $transactionId = $result;
             $contract->eth->getTransactionReceipt($transactionId, function ($err, $transaction) use ($contractOwner, $toAccount, $AccountsEth) {

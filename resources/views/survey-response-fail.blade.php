@@ -4,7 +4,7 @@
 <div class="form-wrap">
     <div class="form-container">
         <h1>Sorry</h1>
-        <p>There was an error in processing your survey, please try again.</p>
+        <p>{{ $message ?? '' }}</p>
     </div>
 </div>
 @endsection

@@ -105,28 +105,29 @@ class SurveyControllerTest extends TestCase
 
         $response = $this->actingAs($user)->postJson(route('surveys.store'), [
             // TODO: send request data
-
-            'json_' => '[
-            {
-              "type": "textarea",
-              "label": "Text Area",
-              "className": "form-control",
-              "name": "textarea-1582314765616"
-            },
-            {
-              "type": "textarea",
-              "label": "Text Area",
-              "className": "form-control",
-              "name": "textarea-1582314766165"
-            }
-          ]'
-
+            'json' =>
+            [
+                [
+                    'type' => 'textarea',
+                    'label' => 'Text Area',
+                    'className' => 'form-control',
+                    'name' => 'textarea-1582314765616'
+                ],
+                [
+                    'type' => 'textarea',
+                    'label' => 'Text Area',
+                    'className' => 'form-control',
+                    'name' => 'textarea-1582314766165'
+                ],
+            ],
+            'title' => 'title',
+            'description' => 'desription',
         ]);
-
         $response->assertOk();
 
         // TODO: perform additional assertions
     }
+
 
     /**
      * @test

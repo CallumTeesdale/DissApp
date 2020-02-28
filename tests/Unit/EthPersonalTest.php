@@ -14,7 +14,7 @@ class EthPersonalTest extends UnitTestCase
     {
         $personal = new EthPersonal();
 
-        $account = $personal->createEthAccount();
+        $account = $personal->createEthAccount('password');
 
         $this->assertTrue(is_string($account));
     }
@@ -27,7 +27,7 @@ class EthPersonalTest extends UnitTestCase
 
         $personal = new EthPersonal();
 
-        $personal->unlockAccount('');
+        $personal->unlockAccount('', '1');
     }
     /**
      * @test
@@ -37,7 +37,7 @@ class EthPersonalTest extends UnitTestCase
         $this->expectException(RuntimeException::class);
 
         $personal = new EthPersonal();
-        $personal->unlockAccount('');
+        $personal->unlockAccount('', '');
 
         $personal->lockAccount('');
     }

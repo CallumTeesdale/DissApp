@@ -40,25 +40,26 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         //
-        $var = var_export($request, true);
-        file_put_contents('decode.txt', $var);
-        $jsondata = $request;
-        $json =  \json_decode($jsondata['json_']);
-        $json = \json_encode($json);
+        $data = $request->getContent();
+        $json =  \json_decode($data, true);
+        $formData = \json_encode($json['json']);
         $survey = Survey::create([
-            'form_data' => $jsondata['json_'],
+            'form_data' => $formData,
             'creator_id' => Auth::id(),
             'category' => 1,
-            'survey_title' => 'title',
-            'survey_description' => 'desc',
+            'survey_title' => $json['title'],
+            'survey_description' => $json['description'],
         ]);
         if ($survey->exists()) {
             return response('success', 200)
                 ->header('Content-Type', 'text/plain');
-        } else {
-            return response('success', 400)
+        }
+        //@codeCoverageIgnoreStart
+        else {
+            return response('fail', 400)
                 ->header('Content-Type', 'text/plain');
         }
+        //@codeCoverageIgnoreStop
     }
 
     /**
@@ -70,16 +71,20 @@ class SurveyController extends Controller
     public function show($id)
     {
 
-        //
+        //Collect all responses to survey
         $responses = Response::where('id_survey', $id)->get();
         $data = [];
         if ($responses->count()) {
+
+            //Decode the json to arrays
             foreach ($responses as $response) {
                 array_push($data, json_decode($response->response));
             }
             $nameAndData = [];
             $numElements = count($data[0]);
             $arr = [];
+
+            //Create and array with the array keys as the name of the input, so we can then sum all responses for the question
             foreach ($data as $dat) {
 
                 for ($i = 0; $i < $numElements; $i++) {
@@ -88,6 +93,8 @@ class SurveyController extends Controller
                     }
                 }
             }
+
+            //Push the user data to the created array
             foreach ($data as $dat) {
                 for ($i = 0; $i < $numElements; $i++) {
                     if (property_exists($dat[$i], 'name')) {
@@ -98,14 +105,9 @@ class SurveyController extends Controller
                 }
             }
 
-            // var_dump($nameAndData['text-1581968386744'][1][0]);
-            // var_dump($nameAndData['select-1581968388862'][1][0]);
+            //Genereate the charts that display the data.
             $charts = new GenerateCharts();
             $charts = $charts->GenerateCharts($nameAndData);
-            // var_dump($nameAndData);
-            // var_dump($charts);
-            // die;
-
         } else {
             $charts = 'No results yet';
         }

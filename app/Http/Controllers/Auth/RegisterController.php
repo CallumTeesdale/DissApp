@@ -70,7 +70,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $personal = new EthPersonal();
-        $account = $personal->createEthAccount();
+        $account = $personal->createEthAccount($data['password']);
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
