@@ -38,6 +38,21 @@
             $("button").click(function(e) {
                 var userData = $('#fb-render').formRender("userData");
     e.preventDefault();
+  let allAreFilled = true;
+  document.getElementById("fb-render").querySelectorAll("[required]").forEach(function(i) {
+    if (!allAreFilled) return;
+    if (!i.value) allAreFilled = false;
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+      document.getElementById("fb-render").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+    }
+  })
+  if (!allAreFilled) {
+    $('span').text(' Fill all the required fields');
+  }else{
     $.ajax({
         type: "POST",
         url: "{{route('response.store')}}",
@@ -58,6 +73,8 @@
             location.href = "{{route('failResponse')}}";
         }
     });
+};
+
 });
         });
     </script>
