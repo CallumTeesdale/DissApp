@@ -60,6 +60,36 @@ ul li a {
 ul li:hover a {
     color: white;
 }
+.js-cookie-consent,
+.cookie-consent {
+    position: fixed;
+    bottom: 0px;
+    z-index: 2147483635 !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 16px !important;
+    width: 100% !important;
+    text-align: center;
+    height: 10vh;
+    background-color: grey;
+    opacity: 70%;
+}
+
+.cookie-consent__message {
+    justify-content: center;
+    color: white;
+}
+
+.js-cookie-consent-agree,
+.cookie-consent__agree {
+    cursor: pointer;
+    float: left;
+    width: 100%;
+    border: none;
+    font-size: 1em;
+    color: white;
+    background-color: grey;
+}
+
 /* Hero Section */
 .hero {
     background-image: url("../images/hero_image.png");

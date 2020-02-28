@@ -43,7 +43,7 @@
                 </ul>
             </nav>
         </header>
-
+        @include('cookieConsent::index')
     </div>
     <!-- Main Container Ends -->
     @yield('content')

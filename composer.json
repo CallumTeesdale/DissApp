@@ -13,7 +13,8 @@
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.1",
-        "sc0vu/web3.php": "dev-master"
+        "sc0vu/web3.php": "dev-master",
+        "spatie/laravel-cookie-consent": "^2.11"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
