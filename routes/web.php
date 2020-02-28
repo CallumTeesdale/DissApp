@@ -22,5 +22,7 @@ Route::get('/response/fail', 'ResponseController@fail')->name('failResponse');
 Auth::routes();
 
 Route::get('/profile', 'ProfileController@getProfile')->name('profile');
+Route::get('/profile/edit', 'ProfileController@getProfileEdit')->name('edit.profile');
+Route::post('/profile/edit', 'ProfileController@postProfileEdit')->name('edit.profile');
 Route::resource('surveys', 'SurveyController')->middleware('auth');
 Route::resource('response', 'ResponseController')->middleware('auth');

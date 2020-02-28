@@ -19,8 +19,9 @@
                 <h2>email</h2><p>{{Auth::user()->email}}</p>
                 <h2>course</h2><p>{{Auth::user()->course}}</p>
                 <h2>about you</h2><p>{{Auth::user()->about}}</p>
-                <a class="link" href="{{ route('surveys.create')}}"><p>Create A survey</p>
+                <a class="link" href="{{ route('surveys.create')}}"><p>Create A Survey</p>
                 <a href="{{route('logout')}}" class="link" onclick="event.preventDefault(); document.getElementById('logout').submit();">Logout</a>
+                <a class="link" href="{{ route('edit.profile') }}"><p>Edit Account</p></a>
                 <form id="logout" action="{{route('logout')}}" method="POST" style="display:none"> {{csrf_field() }} </form>
             </div>
         </div>
@@ -32,7 +33,7 @@
             <div id="{{$survey->id}}" class="hide accordion-container">
             <ul>
                <p>{{$survey->survey_description}}</p>
-               <a href="{{route('surveys.show',  $survey->id)}}"> View Data</a>
+               <a class="link" href="{{route('surveys.show',  $survey->id)}}"> View Data</a>
             </ul>
         </div>
             @endforeach

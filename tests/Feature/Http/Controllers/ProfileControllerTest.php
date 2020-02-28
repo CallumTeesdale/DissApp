@@ -28,6 +28,10 @@ class ProfileControllerTest extends TestCase
 
         // TODO: perform additional assertions
     }
-
-    // test cases...
+    public function get_profile_edit_returns_an_ok_response()
+    {
+        $response = $this->actingAs($user)->get(route(''));
+        $response->assertOk();
+        $response->assertViewIs('edit-profile-form');
+    }
 }
