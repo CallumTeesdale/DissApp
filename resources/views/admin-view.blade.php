@@ -18,7 +18,7 @@
             @foreach ($variables as $var)
 
                     <div class="item-container">
-                        <div class="market-image"></div>
+                        <div class="market-image"><img src="/storage/market/{{$var->image}}" alt=""></div>
                         <div class="market-details">
                             <h1>{{ $var->name}}</h1>
                             <p>Description: {{$var->description}}</p>

@@ -4,7 +4,9 @@
 <div class="form-wrap">
     <div class="form-container">
         <form action="" class="login-form">
+            <br>
             <input class="username" type="title" name="title" id="title" placeholder="Title">
+            <br>
             <input class="username" name="description" id="description" cols="30" rows="5" placeholder="Description">
         </form>
         <br>

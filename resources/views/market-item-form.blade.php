@@ -12,49 +12,20 @@
             <br>
             <input type="hidden" value="{{ $item->id ?? '' }}" name="id">
             <label for="name">Name: </label>
-            <input id="name" value="{{ $item->name ?? '' }}" placeholder="Item Name" type="text" class="form-control-text @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+            <input id="name" value="{{ $item->name ?? '' }}" placeholder="Item Name" type="text" class="form-control-text" name="name" required autocomplete="name">
 
-            @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
             <br>
             <label for="description">Description: </label>
-            <input id="description" value="{{ $item->description ?? '' }}" placeholder="Item description" type="text" class="form-control-text @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description">
-
-            @error('description')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <input id="description" value="{{ $item->description ?? '' }}" placeholder="Item description" type="text" class="form-control-text" name="description"  required autocomplete="description">
             <label for="price">Price: </label>
-            <input id="price" value="{{ $item->price ?? '' }}" placeholder="Item price" type="number" class="form-control-number @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price">
-
-            @error('price')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <input id="price" value="{{ $item->price ?? '' }}" placeholder="Item price" type="number" class="form-control-number" name="price" required autocomplete="price">
             <label for="live">Live: </label>
             <input id="live" type="checkbox"  @if (!empty($item) && $item->live ===1)
                 checked
 
             @endif value="1" name="live" class="form-control-checkbox">
-
-            @error('live')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
             <label for="barcode">Barcode: </label>
-            <input id="barcode" value="{{ $item->barcode ?? '' }}" placeholder="Item barcode" type="text" class="form-control-text @error('barcode') is-invalid @enderror" name="barcode" value="{{ old('barcode') }}" required autocomplete="barcode">
-
-            @error('barcode')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <input id="barcode" value="{{ $item->barcode ?? '' }}" placeholder="Item barcode" type="text" class="form-control-text" name="barcode"  required autocomplete="barcode">
             <br>
             <div class="form-group">
                 <input type="file" class="form-control-file" name="image" id="avatarFile" aria-describedby="fileHelp">

@@ -11,14 +11,17 @@
 <section class="category">
     <div class="category-wrap">
         <div class="category-title">
-            <h1>Categories</h1>
+            <h1>Features</h1>
         </div>
         <div class="category-icon-wrap">
             <div class="category-icons"> <img src="images/computer.png">
-                <h2>Computing</h2>
+                <h2>Easily create Surveys</h2>
             </div>
             <div class="category-icons"> <img src="images/computer.png">
-                <h2>Computing</h2>
+                <h2>Shop Rewards</h2>
+            </div>
+            <div class="category-icons"> <img src="images/computer.png">
+                <h2>Analyse Data</h2>
             </div>
         </div>
     </div>

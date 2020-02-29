@@ -6,7 +6,7 @@
                     <form class="login-form" method="POST" action="{{ route('login') }}">
                         @csrf
 
-                                <input id="username" type="text" class="username @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" placeholder="username" type="text" class="username @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -14,7 +14,7 @@
                                     </span>
                                 @enderror
                                 <br />
-                                <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" placeholder="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

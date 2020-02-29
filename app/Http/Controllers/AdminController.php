@@ -64,10 +64,11 @@ class AdminController extends Controller
             if (!empty($request->id)) {
                 $market  = Market::where('id', request()->id)->get()->first();
                 if ($request->hasFile('image')) {
-                    $imageName = request()->id . '_image' . time() . '.' . request()->image->getClientOriginalExtension();
+                    $imageName = request()->id . '.' . request()->image->getClientOriginalExtension();
                     $request->image->storeAs('market', $imageName);
                     $market->image = $imageName;
                 }
+
                 $market->name = $request->name;
                 $market->description = $request->description;
                 $market->price = $request->price;
@@ -76,7 +77,7 @@ class AdminController extends Controller
                 $market->save();
             } else {
                 $survey = Market::create([
-                    'image' => $imageName,
+                    'image' => 'item.jpg',
                     'name' => $request->name,
                     'description' => $request->description,
                     'price' => $request->price,
@@ -84,15 +85,14 @@ class AdminController extends Controller
                     'live' => $request->live,
                 ]);
             }
-
-
-
-
             $variables = Market::all();
             return view('admin-view', ['variables' => $variables]);
-        } catch (\Exception $e) {
+        }
+        //@codeCoverageIgnoreStart
+        catch (\Exception $e) {
             $message = $e->getMessage();
             return view('generic-message-view', ['message' => $message]);
         }
+        //@codeCoverageIgnoreStop
     }
 }
