@@ -46,6 +46,18 @@ class ProfileController extends Controller
         $course = $request->input('course');
         $about = $request->input('about');
         try {
+            $request->validate([
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'about' => ['required', 'string', 'max:255'],
+                'course' => ['required', 'string', 'max:255'],
+            ]);
+            $user = Auth::user();
+            $avatarName = $user->id . '_avatar' . time() . '.' . request()->avatar->getClientOriginalExtension();
+            $request->avatar->storeAs('avatars', $avatarName);
+
+            $user->avatar = $avatarName;
+            $user->save();
             $update = User::whereId(Auth::id())->update([
                 'email' => $email,
                 'course' => $course,
@@ -53,8 +65,8 @@ class ProfileController extends Controller
             ]);
             return $this->getProfile();
         } catch (\Exception $e) {
-            $message = 'Error updating profile';
-            return view('survey-response-fail', ['message' => $message]);
+            $message = $e->getMessage();
+            return view('generic-message-view', ['message' => $message]);
         }
     }
 }

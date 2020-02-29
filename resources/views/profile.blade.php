@@ -12,7 +12,7 @@
     <div class="profile-container">
         <div class="profile-data-container">
             <div class="profile-data">
-                <div class="profile-image"><img src="" alt=""></div>
+                <div class="profile-image"><img src="/storage/avatars/{{ Auth::user()->avatar }}" alt="avatar"></div>
                 <h1>Hello, {{Auth::user()->username}}</h1>
                 <p>Balance: {!! $balance[0] !!}  ST</p>
             </br>

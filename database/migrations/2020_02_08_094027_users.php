@@ -23,6 +23,7 @@ class Users extends Migration
             $table->integer('priv_level')->nullable();
             $table->string('about');
             $table->string('course');
+            $table->string('avatar')->default('user.jpg');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

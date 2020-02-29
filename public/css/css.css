@@ -283,6 +283,11 @@ ul li:hover a {
     height: 150px;
     margin: 0 auto;
 }
+.profile-image img {
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+}
 
 .divider {
     width: 2px;
@@ -365,6 +370,18 @@ ul li:hover a {
     border-color: #717070;
     color: #fff !important;
     background-color: #e07855 !important;
+}
+
+.market-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.item-container {
+    border: thin solid #717070;
+    border-radius: 5%;
+    padding: 10px;
+    margin: 5px;
 }
 
 /* Mobile */

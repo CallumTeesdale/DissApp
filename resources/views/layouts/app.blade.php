@@ -35,6 +35,7 @@
                     <li> <a href="{{ route('contact') }}">CONTACT</a></li>
                     @if (Route::has('login'))
                         @auth
+                           <li> <a href="{{ route('market') }}">MARKET</a></li>
                            <li> <a href="{{ route('profile') }}">{{Auth::User()->username}}</a></li
                         @else
                            <li> <a href="{{ route('login') }}">LOGIN</a><li>

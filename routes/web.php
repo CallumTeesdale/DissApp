@@ -26,3 +26,11 @@ Route::get('/profile/edit', 'ProfileController@getProfileEdit')->name('edit.prof
 Route::post('/profile/edit', 'ProfileController@postProfileEdit')->name('edit.profile');
 Route::resource('surveys', 'SurveyController')->middleware('auth');
 Route::resource('response', 'ResponseController')->middleware('auth');
+
+Route::get('/market', 'MarketController@index')->name('market')->middleware('auth');
+
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('auth');
+Route::get('/admin/market', 'AdminController@getMarketItemAll')->name('admin.get.market')->middleware('auth');
+Route::get('/admin/market/edit/{id}', 'AdminController@editMarketItem')->name('admin.market.edit.item')->middleware('auth');
+Route::get('/admin/market/create/', 'AdminController@createMarketItem')->name('admin.market.create.item')->middleware('auth');
+Route::post('/admin/market/save', 'AdminController@postMarketItem')->name('admin.market.post.item')->middleware('auth');
