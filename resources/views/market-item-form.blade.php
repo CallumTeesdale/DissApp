@@ -16,8 +16,10 @@
             <br>
             <input id="description" value="{{ $item->description ?? '' }}" placeholder="Item description" type="text" class="form-control-text" name="description"  required autocomplete="description">
             <input id="price" value="{{ $item->price ?? '' }}" placeholder="Item price" type="number" class="form-control-number" name="price" required autocomplete="price">
+            <input type='hidden' value='0' name='live'>
             <input id="live" type="checkbox"  @if (!empty($item) && $item->live ===1)
                 checked
+
 
             @endif value="1" name="live" class="form-control-checkbox">
             <input id="barcode" value="{{ $item->barcode ?? '' }}" placeholder="Item barcode" type="text" class="form-control-text" name="barcode"  required autocomplete="barcode">

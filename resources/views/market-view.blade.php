@@ -1,27 +1,31 @@
 @extends('layouts.app')
-
 @section('content')
-
 <div class="form-wrap">
     <div class="form-container">
-        <input type="text" name="search" id="search" class="username">
-        <div class='market-container'>
+            <div class="content-card">
+                @foreach ($variables as $var)
+                @if ($var->live === 1)
 
-            @foreach ($variables as $var)
 
-                    <div class="item-container">
-                        <div class="market-image"><img src="/storage/market/{{$var->image}}" alt=""></div>
-                        <div class="market-details">
-                            <h1>{{ $var->name}}</h1>
-                            <p>Description: {{$var->description}}</p>
-                            <p>Price: {{$var->price}} ST</p>
-                            <a href=""><button class="register">Buy</button></a>
-                        </div>
-                    </div>
+
+            <a class="card" href="{{route('market.buy', $var->id)}}">
+            <div class="front" style="background-image: url(/storage/market/{{$var->image}});">
+              <p>{{ $var->name}}</p>
+            </div>
+            <div class="back">
+              <div>
+                <p>{{$var->description}}</p>
+                <p>Price: {{$var->price}} ST</p>
+                <button class="button">Buy</button>
+              </div>
+            </div>
+            </a>
+            @endif
 
             @endforeach
-        </div>
-
     </div>
+    </div>
+
 </div>
+
 @endsection

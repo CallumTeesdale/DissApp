@@ -23,7 +23,7 @@
 </head>
 <body id="overrides">
     <!-- Main Container -->
-    <div class="container">
+    <div class="main-container">
         <!-- Navigation -->
         <header> <a href="">
                 <h4 class="logo">Surve.ac</h4>
@@ -36,7 +36,8 @@
                     @if (Route::has('login'))
                         @auth
                            <li> <a href="{{ route('market') }}">MARKET</a></li>
-                           <li> <a href="{{ route('profile') }}">{{Auth::User()->username}}</a></li
+                           <li> <a href="{{ route('surveys.index') }}">SURVEYS</a></li>
+                           <li> <a href="{{ route('profile') }}">{{Auth::User()->username}}</a></li>
                         @else
                            <li> <a href="{{ route('login') }}">LOGIN</a><li>
                         @endauth

@@ -14,22 +14,28 @@
         <div class="surveys-container">
             <h1>Options</h1>
            @if (!empty($variables))
-           <div class='market-container'>
+           <div class='surveys-container'>
+            <div class="content-card">
             @foreach ($variables as $var)
 
-                    <div class="item-container">
-                        <div class="market-image"><img src="/storage/market/{{$var->image}}" alt=""></div>
-                        <div class="market-details">
-                            <h1>{{ $var->name}}</h1>
-                            <p>Description: {{$var->description}}</p>
-                            <p>Price: {{$var->price}}</p>
-                            <p>live: {{$var->live}}</p>
-                            <p> Creation Date: {{$var->created_at}}</p>
-                            <a href="{{ route('admin.market.edit.item', ['id' => $var->id])}}" class="link"> Edit</a>
-                        </div>
-                    </div>
+            <a class="card" href="{{route('admin.market.edit.item', $var->id)}}">
+                <div class="front" style="background-image: url(/storage/market/{{$var->image}});">
+                  <p>{{ $var->name}}</p>
+                </div>
+                <div class="back">
+                  <div>
+                    <p>{{$var->description}}</p>
+                    <p>Price: {{$var->price}} ST</p>
+                    <p>Live: {{$var->live}}</p>
+                    <p>Date Created: {{$var->created_at}} ST</p>
+
+                    <button class="button">Edit</button>
+                  </div>
+                </div>
+                </a>
 
             @endforeach
+            </div>
         </div>
            @else
                <p>Choose and option</p>
