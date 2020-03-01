@@ -10,8 +10,8 @@
                             <img  src="/storage/avatars/{{ $user->avatar }}" />
                         </div>
                         @csrf
-                        <label for="email">Email</label>
-                                <input id="email" value="{{$user->email ?? 'email' }}" type="email" class="email @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <br>
+                                <input id="email" placeholder="email" value="{{$user->email ?? 'email' }}" type="email" class="email @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -19,17 +19,15 @@
                                     </span>
                                 @enderror
                                 <br/>
-                                <label for="course">Course</label>
-                                <input id="course" value="{{$user->course ?? 'Course'}}" type="text" class="username   @error('course') is-invalid @enderror" name="course" value="{{ old('course') }}" required autocomplete="course">
+                                <input id="course" placeholder="course" value="{{$user->course ?? 'Course'}}" type="text" class="username   @error('course') is-invalid @enderror" name="course" value="{{ old('course') }}" required autocomplete="course">
 
                                 @error('course')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <br />
-                                <label for="about">About</label>
-                                <input id="about" value="{{$user->about ?? 'About'}}" type="textarea" class="username   @error('about') is-invalid @enderror" name="about" value="{{ old('about') }}" required autocomplete="about">
+                                <br>
+                                <input id="about" placeholder="about" value="{{$user->about ?? 'About'}}" type="textarea" class="username   @error('about') is-invalid @enderror" name="about" value="{{ old('about') }}" required autocomplete="about">
 
                                 @error('about')
                                     <span class="invalid-feedback" role="alert">
@@ -42,9 +40,12 @@
                                     <input type="file" class="form-control-file" name="avatar" id="avatarFile" aria-describedby="fileHelp">
                                     <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
                                 </div>
+
                                 <button type="submit" class="register">
                                     {{__('update') }}
                                 </button>
+                                <a href="" class="form-text text-muted">Download User Data         </a>
+                                <a href="" class="form-text text-muted">Delete Account</a>
                             </form>
 
 </div>

@@ -46,24 +46,33 @@ class ProfileController extends Controller
         $course = $request->input('course');
         $about = $request->input('about');
         try {
-            $request->validate([
-                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'email' => ['required', 'string', 'email', 'max:255'],
-                'about' => ['required', 'string', 'max:255'],
-                'course' => ['required', 'string', 'max:255'],
-            ]);
-            $user = Auth::user();
-            $avatarName = $user->id . '_avatar' . time() . '.' . request()->avatar->getClientOriginalExtension();
-            $request->avatar->storeAs('avatars', $avatarName);
+            if ($request->hasFile('avatar')) {
+                $request->validate([
+                    'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'email' => ['required', 'string', 'email', 'max:255'],
+                    'about' => ['required', 'string', 'max:255'],
+                    'course' => ['required', 'string', 'max:255'],
+                ]);
+                $user = Auth::user();
+                $avatarName = $user->id . '_avatar' . time() . '.' . request()->avatar->getClientOriginalExtension();
+                $request->avatar->storeAs('avatars', $avatarName);
 
-            $user->avatar = $avatarName;
-            $user->save();
+                $user->avatar = $avatarName;
+                $user->save();
+            } else {
+                $request->validate([
+                    'email' => ['required', 'string', 'email', 'max:255'],
+                    'about' => ['required', 'string', 'max:255'],
+                    'course' => ['required', 'string', 'max:255'],
+                ]);
+            }
+
             $update = User::whereId(Auth::id())->update([
                 'email' => $email,
                 'course' => $course,
                 'about' => $about,
             ]);
-            return $this->getProfile();
+            return redirect('/profile');
         } catch (\Exception $e) {
             $message = $e->getMessage();
             return view('generic-message-view', ['message' => $message]);

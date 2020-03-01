@@ -5,6 +5,7 @@
     <div class="login-container">
                     <form class="login-form" method="POST" action="{{ route('register') }}">
                         @csrf
+                        <br>
                                 <input id="username" placeholder="username" type="text" class="username @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                 @error('username')

@@ -23,7 +23,6 @@ body {
 header {
     width: 100%;
     height: 5%;
-    background-color: #e07854;
 }
 
 .logo {
@@ -215,15 +214,15 @@ ul li:hover a {
 .login-form input:hover,
 .login-form input:focus,
 .login-form input:active:focus {
-    color: #ff5722;
+    color: #e17855;
     outline: none;
-    border-bottom: 1px solid #ff5722;
+    border-bottom: 1px solid #e17855;
 }
 
 .login-form input:hover::placeholder,
 .login-form input:focus::placeholder,
 .login-form input:active:focus::placeholder {
-    color: #ff5722;
+    color: #e17855;
     position: relative;
     -webkit-transform: translateY(-20px);
     transform: translateY(-20px);

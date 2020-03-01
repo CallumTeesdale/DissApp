@@ -51,8 +51,7 @@ class ProfileControllerTest extends TestCase
             'about' => $user->about,
             'avatar' => UploadedFile::fake()->image('avatar.jpg'),
         ]);
-        $response->assertOk();
-        $response->assertViewIs('profile');
+        $response->assertRedirect('/profile');
         Storage::disk('public')->assertExists('/avatars/' . $user->avatar);
     }
     /**
