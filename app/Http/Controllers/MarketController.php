@@ -7,6 +7,7 @@ use App\Market;
 use App\ContractInteractions;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use App\EthEth;
 
 class MarketController extends Controller
 {
@@ -31,12 +32,15 @@ class MarketController extends Controller
   public function buyItem(Request $request)
   {
     include '../app/ContractVariables.php';
+    $eth = new EthEth();
     $itemId = $request->input('id');
     $password = $request->input('password');
     $item = Market::where('id', $itemId)
       ->get()
       ->first();
     try {
+      //transfer enough gas ether
+      $transfer = $eth->transEther(Auth::user()->public_key);
       $contract = new ContractInteractions();
       $contract->transfer(
         $contractOwner,

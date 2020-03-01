@@ -75,7 +75,6 @@ class RegisterController extends Controller
     $eth = new EthEth();
     $account = $personal->createEthAccount($data['password']);
     try {
-      $transfer = $eth->transEther($account);
       return User::create([
         'username' => $data['username'],
         'email' => $data['email'],

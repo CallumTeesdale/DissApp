@@ -7,24 +7,51 @@
     </div>
 </section>
 
-<!-- Category Section -->
-<section class="category">
-    <div class="category-wrap">
-        <div class="category-title">
+<!-- Feature Section -->
+<section class="feature">
+    <div class="feature-wrap">
+        <div class="feature-container">
+        <div class="feature-title">
             <h1>Features</h1>
         </div>
-        <div class="category-icon-wrap">
-            <div class="category-icons"> <img src="images/computer.png">
-                <h2>Easily create Surveys</h2>
-            </div>
-            <div class="category-icons"> <img src="images/computer.png">
-                <h2>Shop Rewards</h2>
-            </div>
-            <div class="category-icons"> <img src="images/computer.png">
-                <h2>Analyse Data</h2>
-            </div>
-        </div>
+
+        <div class="content-card">
+            <a class="card" href="{{route('register')}}">
+                <div class="front" style="background-image: url(/images/Survey-creator.png);">
+                  <p>Create</p>
+                </div>
+                <div class="back">
+                  <div>
+                    <p>Easily create surveys with the intuitive survey creator.</p>
+                    <button class="button">Sign Up</button>
+                  </div>
+                </div>
+                </a>
+                <a class="card" href="{{route('register')}}">
+                    <div class="front" style="background-image: url(/images/market.png);">
+                      <p>Shop</p>
+                    </div>
+                    <div class="back">
+                      <div>
+                        <p>Spend your earnt tokens in the market.</p>
+                        <button class="button">Sign Up</button>
+                      </div>
+                    </div>
+                    </a>
+                    <a class="card" href="{{route('register')}}">
+                        <div class="front" style="background-image: url(/images/data.png);">
+                          <p>Analyse</p>
+                        </div>
+                        <div class="back">
+                          <div>
+                            <p>Analyse your data with precomputed graphs.</p>
+                            <button class="button">Sign Up</button>
+                          </div>
+                        </div>
+                        </a>
+
     </div>
+</div>
 </section>
 <!-- Copyrights Section -->
 <div class="copyright">&copy;2019- <strong>surve.ac</strong></div>

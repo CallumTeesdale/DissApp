@@ -2,8 +2,22 @@
 
 @section('content')
 
-<div class="form-wrap">
-    <div class="form-container">
+<section class="account-view-wrap">
+    <div class="profile-container">
+        <div class="profile-data-container">
+            <div class="profile-data">
+                <div class="profile-image"><img src="/storage/avatars/{{ $user->avatar }}" alt="avatar"></div>
+                <h1>{{$user->username}}</h1>
+                <p>{{$user->course}}</p>
+                <p>{{$user->about}}</p>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="surveys-container">
+            <h1> {{ $survey->survey_title }}</h1>
+            <p> {{ $survey->survey_description }}</p>
+            <br>
+
         <form id="fb-render" method="post" action="">
         </form>
         <button id="submit" type="button" style="  cursor: pointer;

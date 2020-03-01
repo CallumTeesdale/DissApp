@@ -8,7 +8,7 @@
             @foreach ($surveys as $surv)
 
             <a class="card" href="{{route('response.show', $surv->id)}}">
-                <div class="front" style="background-colour:orange;">
+                <div class="front" style="background-image: url(/storage/categories/{{$surv->category}}.jpg">
                   <p>{{ $surv->survey_title}}</p>
                 </div>
                 <div class="back">

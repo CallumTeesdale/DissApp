@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\ContractInteractions;
 use App\EthPersonal;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class ResponseController extends Controller
 {
@@ -40,7 +41,7 @@ class ResponseController extends Controller
   public function store(Request $request)
   {
     //
-    include '../app/ContractVariables.php';
+    $contractOwner = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1';
     $data = $request->getContent();
     $decode = \json_decode($data, true);
     $userData = \json_encode($decode['userData']);
@@ -69,24 +70,21 @@ class ResponseController extends Controller
     // @codeCoverageIgnoreStop
   }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
   public function show($id)
   {
-    //
-
     $survey = Survey::find($id);
+    $user = User::where('id', $survey->creator_id)->first();
     $responses = Response::where('id_survey', $id)->get();
     $exists = $responses->where('user_id', Auth::id());
     if ($exists->count()) {
       $message = 'You can\'t answer the same survey more than once';
       return view('survey-response-fail', ['message' => $message]);
     } else {
-      return response()->view('render-survey', ['survey' => $survey], 200);
+      return response()->view(
+        'render-survey',
+        ['survey' => $survey, 'user' => $user],
+        200
+      );
     }
   }
 
