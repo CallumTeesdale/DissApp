@@ -14,4 +14,14 @@ class Survey extends Model
     protected $fillable = [
         'id', 'form_data', 'category', 'creator_id', 'survey_title', 'survey_description', 'created_at', 'updated_at'
     ];
+
+    public function category()
+    {
+        return $this->hasOne('App\Category', 'id', 'category');
+    }
+
+    public function responses()
+    {
+        return $this->hasMany('App\Response', 'id_survey', 'id');
+    }
 }

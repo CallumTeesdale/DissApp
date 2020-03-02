@@ -7,7 +7,15 @@
             <br>
             <input class="username" type="text" name="title" id="title" placeholder="title">
             <br>
-            <input class="username" name="description" id="description" type="textarea" cols="30" rows="5" placeholder="description">
+            <input class="username" name="description" id="description" type="textarea" cols="30" rows="5"
+                placeholder="description">
+            <br>
+            <label for="category"> Select a category</label>
+            <select name="category" id="category">
+                @foreach ($categories as $cat)
+                <option value="{{$cat->id}}"> {{$cat->name}}</option>
+                @endforeach
+            </select>
         </form>
         <br>
         <div id="build-wrap"></div>
@@ -40,15 +48,16 @@
                 var fullJSON = formBuilder.actions.getData('json', true);
                 var title = $('#title').val();
                 var description = $('#description').val();
+                var category = $('#category').val();
                 if(title && description){
                 $.ajax({
                     type: 'POST',
                     url: "{{route('surveys.store')}}",
-                    data: JSON.stringify({json:fullJSON, title:title, description:description}),
+                    data: JSON.stringify({json:fullJSON, title:title, description:description, category:category}),
                     success: function(data) {
                         alert('success')
                         console.log(fullJSON);
-                        //location.href = "{{route('successResponse')}}";
+                        location.href = "{{route('successResponse')}}";
                     },
                     error: function(data) {
                         alert('fail');

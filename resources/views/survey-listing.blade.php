@@ -9,18 +9,20 @@
 
             <a class="card" href="{{route('response.show', $surv->id)}}">
                 <div class="front" style="background-image: url(/storage/categories/{{$surv->category}}.jpg">
-                  <p>{{ $surv->survey_title}}</p>
+                    <p>{{ $surv->survey_title}}</p>
                 </div>
                 <div class="back">
-                  <div>
-                    <p>{{$surv->survey_description}}</p>
+                    <div>
+                        <p>{{$surv->survey_description}}</p>
 
-                    <button class="button">Respond</button>
-                  </div>
+                        <button class="button">Respond</button>
+                    </div>
                 </div>
-                </a>
+            </a>
 
             @endforeach
-            </div>
-</div>
-@endsection
+
+        </div>
+        {{ $surveys->links() }}
+    </div>
+    @endsection

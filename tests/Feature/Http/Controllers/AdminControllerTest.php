@@ -203,7 +203,7 @@ class AdminControllerTest extends TestCase
             'live' => $item->live,
             'barcode' => $item->barcode,
 
-        ]);;
+        ]);
         $response->assertOk();
         $response->assertViewIs('admin-view');
         Storage::disk('public')->assertExists('/market/item.jpg');

@@ -22,10 +22,8 @@ class SurveyControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('surveys.create'));
 
-        //$response->assertOk();
+        $response->assertOk();
         $response->assertViewIs('edit-survey');
-
-        // TODO: perform additional assertions
     }
 
     /**
@@ -41,8 +39,6 @@ class SurveyControllerTest extends TestCase
 
         $response->assertOk();
         $this->assertDeleted($survey);
-
-        // TODO: perform additional assertions
     }
 
     /**
@@ -82,8 +78,10 @@ class SurveyControllerTest extends TestCase
     public function show_returns_an_ok_response()
     {
         $user = factory(\App\User::class)->create();
-        $response = factory(\App\Response::class)->create();
         $survey = factory(\App\Survey::class)->create();
+        $response = factory(\App\Response::class)->create([
+            'id_survey' => $survey->id
+        ]);
 
 
         $response = $this->actingAs($user)->get(route('surveys.show', $survey->id));
@@ -122,10 +120,9 @@ class SurveyControllerTest extends TestCase
             ],
             'title' => 'title',
             'description' => 'desription',
+            'category' => 1,
         ]);
         $response->assertOk();
-
-        // TODO: perform additional assertions
     }
 
 

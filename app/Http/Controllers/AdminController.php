@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Market;
+use App\Category;
 
 
 class AdminController extends Controller
@@ -25,8 +26,9 @@ class AdminController extends Controller
             $message = 'You are not authorised';
             return view('generic-message-view', ['message' => $message]);
         }
-        $variables = Market::all();
-        return view('admin-view', ['variables' => $variables]);
+        $items = Market::paginate(6);
+        $storage = 'market';
+        return view('admin-view', ['items' => $items, 'storage' => $storage]);
     }
 
     /**
@@ -94,5 +96,21 @@ class AdminController extends Controller
             return view('generic-message-view', ['message' => $message]);
         }
         //@codeCoverageIgnoreStop
+
+    }
+
+    public function getCategoriesAll()
+    {
+        if (Auth::user()->priv_level !== 1) {
+            $message = 'You are not authorised';
+            return view('generic-message-view', ['message' => $message]);
+        }
+        $categories = Category::paginate(6);
+        $storage = 'categories';
+        return view('admin-view', ['categories' => $categories, 'storage' => $storage]);
+    }
+    public function editCategory()
+    {
+        # code...
     }
 }

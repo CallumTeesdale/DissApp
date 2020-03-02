@@ -18,9 +18,9 @@
             <p> {{ $survey->survey_description }}</p>
             <br>
 
-        <form id="fb-render" method="post" action="">
-        </form>
-        <button id="submit" type="button" style="  cursor: pointer;
+            <form id="fb-render" method="post" action="">
+            </form>
+            <button id="submit" type="button" style="  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -32,12 +32,12 @@
   font-size: 1em;
   background-color: #E07854;
   border-radius: 0px 0px 25px 25px"><span>submit</span></button>
-    </div>
+        </div>
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/jquery-ui.min.js"></script>
-    <script src="/js/form-render.min.js"></script>
-    <script>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/jquery-ui.min.js"></script>
+        <script src="/js/form-render.min.js"></script>
+        <script>
             $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -74,14 +74,11 @@
         data: JSON.stringify({userData:userData, survey_id:{!!$survey->id!!}})
         ,
         success: function(result) {
-            alert('ok');
             console.log("userDate="+ userData);
             console.log("data=" + data);
             location.href = "{{route('successResponse')}}";
         },
         error: function(result) {
-            alert('error');
-
             console.log(userData);
             console.log(data);
             location.href = "{{route('failResponse')}}";
@@ -91,5 +88,5 @@
 
 });
         });
-    </script>
-@endsection
+        </script>
+        @endsection

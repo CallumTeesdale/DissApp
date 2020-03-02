@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Exception;
 use Web3\Web3;
 
 class EthPersonal
@@ -34,8 +35,8 @@ class EthPersonal
         $personal->unlockAccount($account, $password, function ($err, $unlocked) {
             if ($err !== null) {
                 // @codeCoverageIgnoreStart
-                echo 'Error: ' . $err->getMessage();
-                return;
+                //echo 'Error: ' . $err->getMessage();
+                throw new Exception($err);
                 // @codeCoverageIgnoreStop
             }
             if ($unlocked) {
