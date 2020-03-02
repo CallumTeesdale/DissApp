@@ -18,9 +18,10 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        //->orderBy('created_at', 'desc')->paginate(6);
 
-
+        /**
+         *  * Get a list of all the surveys the user has all ready responded to
+         */
         $response = Response::all();
         $arrR_id = [];
         foreach ($response as $r) {
@@ -28,10 +29,16 @@ class SurveyController extends Controller
                 array_push($arrR_id, $r->id_survey);
             }
         }
+
+        /**
+         * * Don't allow creator to find their own surveys
+         */
         $surveys = Survey::where('creator_id', '!=', Auth::id())->orderBy('created_at', 'desc')->get();
 
 
-
+        /**
+         *  * Return with the surveys that aren't the creator logged in or the user hasn't answered
+         */
         return view('survey-listing', ['surveys' => $surveys->except($arrR_id)->paginate(6)]);
     }
 
@@ -55,7 +62,7 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $data = $request->getContent();
         $json = \json_decode($data, true);
         $formData = \json_encode($json['json']);
@@ -66,6 +73,10 @@ class SurveyController extends Controller
             'survey_title' => $json['title'],
             'survey_description' => $json['description']
         ]);
+
+        /**
+         * * If the saving to database was succesful
+         */
         if ($survey->exists()) {
             return response('success', 200)->header('Content-Type', 'text/plain');
         }
@@ -88,7 +99,11 @@ class SurveyController extends Controller
         $responses = Response::where('id_survey', $id)->get();
         $data = [];
         if ($responses->count()) {
-            //Decode the json to arrays
+
+
+            /**
+             * * Decode Json to arrays
+             */
             foreach ($responses as $response) {
                 array_push($data, json_decode($response->response));
             }
@@ -96,7 +111,9 @@ class SurveyController extends Controller
             $numElements = count($data[0]);
             $arr = [];
 
-            //Create and array with the array keys as the name of the input, so we can then sum all responses for the question
+            /**
+             * * Create and array with the array keys as the name of the input, so we can then sum all responses for the question
+             */
             foreach ($data as $dat) {
                 for ($i = 0; $i < $numElements; $i++) {
                     if (property_exists($dat[$i], 'name')) {
@@ -105,7 +122,9 @@ class SurveyController extends Controller
                 }
             }
 
-            //Push the user data to the created array
+            /**
+             * * Push the user data to the created array
+             */
             foreach ($data as $dat) {
                 for ($i = 0; $i < $numElements; $i++) {
                     if (property_exists($dat[$i], 'name')) {
@@ -116,9 +135,15 @@ class SurveyController extends Controller
                 }
             }
 
-            //Genereate the charts that display the data.
+            /**
+             * * Genereate the charts that display the data.
+             */
             $charts = new GenerateCharts();
             $charts = $charts->GenerateCharts($nameAndData);
+
+            /**
+             * * If no responses yet
+             */
         } else {
             $charts = 'No results yet';
         }

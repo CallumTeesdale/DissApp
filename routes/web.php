@@ -13,16 +13,20 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+/**
+ *
+ ** Home Controller
+ */
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
-Route::get('/response/success', 'ResponseController@success')->name(
-    'successResponse'
-);
-Route::get('/response/fail', 'ResponseController@fail')->name('failResponse');
 
-Auth::routes();
 
+/**
+ *
+ * * Profile controller routes
+ */
 Route::get('/profile', 'ProfileController@getProfile')->name('profile');
 Route::get('/profile/edit', 'ProfileController@getProfileEdit')->name(
     'edit.profile'
@@ -30,9 +34,34 @@ Route::get('/profile/edit', 'ProfileController@getProfileEdit')->name(
 Route::post('/profile/edit', 'ProfileController@postProfileEdit')->name(
     'edit.profile'
 );
-Route::resource('surveys', 'SurveyController')->middleware('auth');
-Route::resource('response', 'ResponseController')->middleware('auth');
 
+/**
+ * * Survey Controller routes
+ */
+Route::resource('surveys', 'SurveyController')->middleware('auth');
+
+
+
+/**
+ * * Response Controller Routes
+ */
+Route::resource('response', 'ResponseController')->middleware('auth');
+Route::get('/response/success', 'ResponseController@success')->name(
+    'successResponse'
+);
+Route::get('/response/fail', 'ResponseController@fail')->name('failResponse');
+
+
+
+/**
+ * * Auth Routes
+ */
+Auth::routes();
+
+
+/**
+ * * Market Place Routes
+ */
 Route::get('/market', 'MarketController@index')
     ->name('market')
     ->middleware('auth');
@@ -44,10 +73,17 @@ Route::post('/market/purcahse', 'MarketController@buyItem')
     ->name('market.purchase')
     ->middleware('auth');
 
+
+/**
+ * * Admin Routes
+ */
 Route::get('/admin', 'AdminController@index')
     ->name('admin')
     ->middleware('auth');
 
+/**
+ * * Admin Market Routes
+ */
 Route::get('/admin/market', 'AdminController@getMarketItemAll')
     ->name('admin.get.market')
     ->middleware('auth');
@@ -61,6 +97,10 @@ Route::post('/admin/market/save', 'AdminController@postMarketItem')
     ->name('admin.market.post.item')
     ->middleware('auth');
 
+
+/**
+ * * Admin Category Routes
+ */
 Route::get('/admin/categories', 'AdminController@getCategoriesAll')
     ->name('admin.get.categories')
     ->middleware('auth');

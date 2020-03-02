@@ -5,6 +5,9 @@ namespace App;
 use Exception;
 use Web3\Web3;
 
+/**
+ * * Class to allow interacting with accounts
+ */
 class EthPersonal
 {
     public function __construct()
@@ -12,11 +15,22 @@ class EthPersonal
         $this->web3 = new Web3('http://localhost:8545');
     }
 
+    /**
+     * * Function to create an account
+     *  @param string $password
+     *  the password to the account
+     *
+     *  @return string $newAccount
+     *  returns a hex addressof the account
+     */
     public function createEthAccount($password)
     {
         $newAccount = '';
         $personal = $this->web3->personal;
-        //create the account
+
+        /**
+         * * create the account
+         */
         $personal->newAccount($password, function ($err, $account) use (&$newAccount, &$accountArr) {
             if ($err !== null) {
                 // @codeCoverageIgnoreStart
@@ -28,6 +42,18 @@ class EthPersonal
         });
         return $newAccount;
     }
+
+    /**
+     * * Function to unlock an account
+     *  @param string $account
+     *  hex address of the account to unlock
+     *
+     *  @param string $password
+     *  password of the account to unlock
+     *
+     *  @return object $unlocked
+     *
+     */
     public function unlockAccount($account, $password)
     {
         //unlock the account so transactions can take place
@@ -49,6 +75,14 @@ class EthPersonal
         });
     }
 
+    /**
+     * * Function to lock an account
+     *
+     *  @param string $account
+     *  hex address of the account to lock
+     *
+     *  @return object $locked
+     */
     public function lockAccount($account)
     {
         // remember to lock account after transaction

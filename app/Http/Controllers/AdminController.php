@@ -10,7 +10,9 @@ use App\Category;
 
 class AdminController extends Controller
 {
-    //
+    /**
+     * * Display the admin panel
+     */
     public function index()
     {
         if (Auth::user()->priv_level !== 1) {
@@ -20,12 +22,17 @@ class AdminController extends Controller
         return view('admin-view');
     }
 
+
+    /**
+     * * Get all the market items
+     */
     public function getMarketItemAll()
     {
         if (Auth::user()->priv_level !== 1) {
             $message = 'You are not authorised';
             return view('generic-message-view', ['message' => $message]);
         }
+
         $items = Market::paginate(6);
         $storage = 'market';
         return view('admin-view', ['items' => $items, 'storage' => $storage]);
@@ -47,6 +54,10 @@ class AdminController extends Controller
         $item = Market::where('id', $id)->get()->first();
         return view('market-item-form', ['item' => $item]);
     }
+
+    /**
+     * * Display the market item creation form
+     */
     public function createMarketItem()
     {
         if (Auth::user()->priv_level !== 1) {
@@ -56,27 +67,47 @@ class AdminController extends Controller
         return view('market-item-form');
     }
 
+    /**
+     * * Save the Created or edited market item
+     */
+
     public function postMarketItem(Request $request)
     {
         if (Auth::user()->priv_level !== 1) {
             $message = 'You are not authorised';
             return view('generic-message-view', ['message' => $message]);
         }
+
         try {
+
+            /**
+             * * If an id was posted then edit the existing item by the posted id
+             */
             if (!empty($request->id)) {
                 $market  = Market::where('id', request()->id)->get()->first();
+
+                /**
+                 * * If a new image was uploaded save the new image
+                 */
                 if ($request->hasFile('image')) {
                     $imageName = request()->id . '.' . request()->image->getClientOriginalExtension();
                     $request->image->storeAs('market', $imageName);
                     $market->image = $imageName;
                 }
 
+                /**
+                 * * Save the edited info
+                 */
                 $market->name = $request->name;
                 $market->description = $request->description;
                 $market->price = $request->price;
                 $market->barcode = $request->barcode;
                 $market->live = $request->live;
                 $market->save();
+
+                /**
+                 * * Create a new item
+                 */
             } else {
                 $survey = Market::create([
                     'image' => 'item.jpg',
@@ -99,6 +130,9 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * * Get all categories
+     */
     public function getCategoriesAll()
     {
         if (Auth::user()->priv_level !== 1) {

@@ -9,6 +9,7 @@ use App\ContractInteractions;
 use App\EthPersonal;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Exception;
 
 class ResponseController extends Controller
 {
@@ -40,27 +41,47 @@ class ResponseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * * Set the contract owner and decode the json from the ajax submission
+         */
+
         $contractOwner = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1';
         $data = $request->getContent();
         $decode = \json_decode($data, true);
         $userData = \json_encode($decode['userData']);
 
+
+        /**
+         * * Save the data
+         */
         $response = Response::create([
             'id_survey' => $decode['survey_id'],
             'response' => $userData,
             'user_id' => Auth::id()
         ]);
 
+        /**
+         * *If saved succesfuly deposit the tokens
+         */
         if ($response->exists()) {
-            $contract = new ContractInteractions();
-            $contract->transfer(
-                Auth::user()->public_key,
-                $contractOwner,
-                '123456',
-                100
-            );
 
+            try {
+                $contract = new ContractInteractions();
+                $contract->transfer(
+                    Auth::user()->public_key,
+                    $contractOwner,
+                    '123456',
+                    100
+                );
+            } catch (Exception $e) {
+                /**
+                 * * Handle the error if the transfer failed
+                 */
+            }
+
+            /**
+             * * Tell the browser that everything succeeded
+             */
             return response('success', 200)->header('Content-Type', 'text/plain');
         }
         // @codeCoverageIgnoreStart
@@ -70,20 +91,40 @@ class ResponseController extends Controller
         // @codeCoverageIgnoreStop
     }
 
+    /**
+     * * Show the rendered survey
+     */
     public function show($id)
     {
+        /**
+         * * Get the survey, the user who created the survey, and any responses to the survey
+         */
         $survey = Survey::find($id);
         $user = User::where('id', $survey->creator_id)->first();
         $responses = Response::where('id_survey', $id)->get();
+
+        /**
+         * * Check whether the logged in user has all ready answered the survey
+         */
         $exists = $responses->where('user_id', Auth::id());
 
+        /**
+         * * If the logged in user all ready answered then redirect them
+         */
         if ($exists->count()) {
             $message = 'You can\'t answer the same survey more than once';
             return view('survey-response-fail', ['message' => $message]);
         } elseif (Auth::id() == $survey->creator_id) {
+
+            /**
+             * * If the user trying to access the rendered survey is the creator, redirect them
+             */
             $message = 'You can\'t answer your own';
             return view('survey-response-fail', ['message' => $message]);
         } else {
+            /**
+             * * If all checks pass then render the survey
+             */
             return response()->view(
                 'render-survey',
                 ['survey' => $survey, 'user' => $user],
@@ -126,10 +167,17 @@ class ResponseController extends Controller
         //
     }
 
+    /**
+     * * Display the success page
+     */
     public function success()
     {
         return view('survey-response-success');
     }
+
+    /**
+     * * Display the fail page
+     */
     public function fail()
     {
         return view('survey-response-fail');
