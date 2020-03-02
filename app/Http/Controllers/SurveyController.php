@@ -26,7 +26,7 @@ class SurveyController extends Controller
         $arrR_id = [];
         foreach ($response as $r) {
             if ($r->user_id === Auth::id()) {
-                array_push($arrR_id, $r->id_survey);
+                array_push($arrR_id, $r->id_survey); //@codeCoverageIgnore
             }
         }
 

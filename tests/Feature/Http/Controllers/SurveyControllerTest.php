@@ -26,6 +26,8 @@ class SurveyControllerTest extends TestCase
         $response->assertViewIs('edit-survey');
     }
 
+
+
     /**
      * @test
      */
@@ -63,7 +65,20 @@ class SurveyControllerTest extends TestCase
     public function index_returns_an_ok_response()
     {
 
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->create(
+            [
+                'id' => 1,
+            ]
+        );
+        $surv = factory(\App\Survey::class)->create(
+            [
+                'id' => 1,
+            ]
+        );
+        $responses = factory(\App\Response::class)->create([
+            'user_id' => 1,
+        ]);
+
 
         $response = $this->actingAs($user)->get(route('surveys.index'));
 

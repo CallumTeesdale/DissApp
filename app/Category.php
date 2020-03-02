@@ -16,9 +16,4 @@ class Category extends Model
     protected $fillable = [
         'id', 'name', 'image',
     ];
-
-    public function survey()
-    {
-        return $this->belongsTo('App\Survey');
-    }
 }

@@ -46,10 +46,8 @@ Route::resource('surveys', 'SurveyController')->middleware('auth');
  * * Response Controller Routes
  */
 Route::resource('response', 'ResponseController')->middleware('auth');
-Route::get('/response/success', 'ResponseController@success')->name(
-    'successResponse'
-);
-Route::get('/response/fail', 'ResponseController@fail')->name('failResponse');
+Route::get('/response/submit/success', 'ResponseController@success')->name('successResponse');
+Route::get('/response/submit/fail', 'ResponseController@fail')->name('failResponse');
 
 
 

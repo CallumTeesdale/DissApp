@@ -79,7 +79,9 @@ class MarketController extends Controller
                         $password,
                         $item->price
                     );
-                } catch (Exception $e) {
+                }
+                //@codeCoverageIgnoreStart
+                catch (Exception $e) {
 
                     /**
                      * * Error in the processing of the transfer
@@ -87,20 +89,25 @@ class MarketController extends Controller
                     $message = 'Error processing purchase, you have not been charged.';
                     return view('generic-message-view', ['message' => $message, 'title' => 'Something went wrong']);
                 }
-            } else {
+            }
+            //@codeCoverageIgnoreStopt
+            else {
 
                 /**
                  * * Error in validating that the user has enoug funds
                  */
                 return view('generic-message-view', ['message' => 'Not enough funds', 'title', 'Something went wrong']);
             }
-        } catch (Exception $e) {
+        }
+        //@codeCoverageIgnoreStart
+        catch (Exception $e) {
 
             /**
              * * General error
              */
             return view('generic-message-view', ['message' => $e]);
         }
+        //@codeCoverageIgnoreStop
         /**
          * * If all succesful return
          */

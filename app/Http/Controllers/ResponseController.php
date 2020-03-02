@@ -73,11 +73,14 @@ class ResponseController extends Controller
                     '123456',
                     100
                 );
-            } catch (Exception $e) {
+            }
+            // @codeCoverageIgnoreStart
+            catch (Exception $e) {
                 /**
                  * * Handle the error if the transfer failed
                  */
             }
+            // @codeCoverageIgnoreStop
 
             /**
              * * Tell the browser that everything succeeded

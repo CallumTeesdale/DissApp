@@ -11,153 +11,157 @@ use Tests\TestCase;
  */
 class ResponseControllerTest extends TestCase
 {
-  use RefreshDatabase;
+    use RefreshDatabase;
 
-  /**
-   * @test
-   */
-  public function create_returns_an_ok_response()
-  {
-    $user = factory(\App\User::class)->create();
+    /**
+     * @test
+     */
+    public function create_returns_an_ok_response()
+    {
+        $user = factory(\App\User::class)->create();
 
-    $response = $this->actingAs($user)->get(route('response.create'));
+        $response = $this->actingAs($user)->get(route('response.create'));
 
-    $response->assertOk();
+        $response->assertOk();
 
-    // TODO: perform additional assertions
-  }
+        // TODO: perform additional assertions
+    }
 
-  /**
-   * @test
-   */
-  public function destroy_returns_an_ok_response()
-  {
-    $this->markTestIncomplete('');
+    /**
+     * @test
+     */
+    public function destroy_returns_an_ok_response()
+    {
+        $this->markTestIncomplete('');
 
-    $response = factory(\App\Response::class)->create();
-    $user = factory(\App\User::class)->create();
+        $response = factory(\App\Response::class)->create();
+        $user = factory(\App\User::class)->create();
 
-    $response = $this->actingAs($user)->delete(
-      route('response.destroy', [$response])
-    );
+        $response = $this->actingAs($user)->delete(
+            route('response.destroy', [$response])
+        );
 
-    $response->assertOk();
-    $this->assertDeleted($response);
+        $response->assertOk();
+        $this->assertDeleted($response);
 
-    // TODO: perform additional assertions
-  }
+        // TODO: perform additional assertions
+    }
 
-  /**
-   * @test
-   */
-  public function edit_returns_an_ok_response()
-  {
-    $response = factory(\App\Response::class)->create();
-    $user = factory(\App\User::class)->create();
+    /**
+     * @test
+     */
+    public function edit_returns_an_ok_response()
+    {
+        $response = factory(\App\Response::class)->create();
+        $user = factory(\App\User::class)->create();
 
-    $response = $this->actingAs($user)->get(
-      route('response.edit', [$response])
-    );
+        $response = $this->actingAs($user)->get(
+            route('response.edit', [$response])
+        );
 
-    $response->assertOk();
+        $response->assertOk();
 
-    // TODO: perform additional assertions
-  }
+        // TODO: perform additional assertions
+    }
 
-  /**
-   * @test
-   */
-  public function index_returns_an_ok_response()
-  {
-    $user = factory(\App\User::class)->create();
+    /**
+     * @test
+     */
+    public function index_returns_an_ok_response()
+    {
+        $user = factory(\App\User::class)->create();
 
-    $response = $this->actingAs($user)->get(route('response.index'));
+        $response = $this->actingAs($user)->get(route('response.index'));
 
-    $response->assertOk();
-  }
+        $response->assertOk();
+    }
 
-  /**
-   * @test
-   */
-  public function show_returns_an_ok_response()
-  {
-    $survey = factory(\App\Survey::class)->create([
-      'creator_id' => 1
-    ]);
-    $user = factory(\App\User::class)->create([
-      'id' => 1
-    ]);
+    /**
+     * @test
+     */
+    public function show_returns_an_ok_response()
+    {
+        $user1 = factory(\App\User::class)->create();
+        $survey = factory(\App\Survey::class)->create([
+            'id' => 1,
+            'creator_id' => 1
+        ]);
+        $user2 = factory(\App\User::class)->create([
+            'id' => 5,
+        ]);
+        $responses = factory(\App\Response::class)->create();
 
-    $response = $this->actingAs($user)->get(
-      route('response.show', $survey->id)
-    );
+        $response = $this->actingAs($user2)->get(
+            route('response.show', $survey->id)
+        );
 
-    $response->assertOk();
-    $response->assertViewIs('render-survey');
-    $response->assertViewHas('survey');
-  }
+        $response->assertOk();
+        $response->assertViewIs('render-survey');
+        $response->assertViewHas('survey');
+    }
 
-  /**
-   * @test
-   */
-  public function store_returns_an_ok_response()
-  {
-    $user = factory(\App\User::class)->create();
-    $response = $this->actingAs($user)->postJson(route('response.store'), [
-      'userData' => [
-        [
-          'type' => 'header',
-          'label' => 'Header'
-        ],
-        [
-          'name' => 'text-1582305226597',
-          'type' => 'text',
-          'label' => 'Text Field',
-          'className' => 'form-control',
-          'userData' => ['test 4']
-        ]
-      ],
-      'survey_id' => 12
-    ]);
+    /**
+     * @test
+     */
+    public function store_returns_an_ok_response()
+    {
+        $user = factory(\App\User::class)->create();
+        $response = $this->actingAs($user)->postJson(route('response.store'), [
+            'userData' => [
+                [
+                    'type' => 'header',
+                    'label' => 'Header'
+                ],
+                [
+                    'name' => 'text-1582305226597',
+                    'type' => 'text',
+                    'label' => 'Text Field',
+                    'className' => 'form-control',
+                    'userData' => ['test 4']
+                ]
+            ],
+            'survey_id' => 12
+        ]);
 
-    $response->assertOk();
-  }
+        $response->assertOk();
+    }
 
-  /**
-   * @test
-   */
-  public function success_returns_an_ok_response()
-  {
-    $response = $this->get(route('successResponse'));
+    /**
+     * @test
+     */
+    public function success_returns_an_ok_response()
+    {
+        $user = factory(\App\User::class)->create();
+        $response = $this->actingAs($user)->get(route('successResponse'));
 
-    $response->assertOk();
-    $response->assertViewIs('survey-response-success');
-  }
-  /**
-   * @test
-   */
-  public function fail_returns_ok_response_response()
-  {
-    $response = $this->get(route('failResponse'));
+        $response->assertOk();
+        $response->assertViewIs('survey-response-success');
+    }
+    /**
+     * @test
+     */
+    public function fail_returns_ok_response_response()
+    {
+        $response = $this->get(route('failResponse'));
 
-    $response->assertOk();
-    $response->assertViewIs('survey-response-fail');
-  }
+        $response->assertOk();
+        $response->assertViewIs('survey-response-fail');
+    }
 
-  /**
-   * @test
-   */
-  public function update_returns_an_ok_response()
-  {
-    $response = factory(\App\Response::class)->create();
-    $user = factory(\App\User::class)->create();
-    $response = $this->actingAs($user)->put(
-      route('response.update', [$response]),
-      [
-        // TODO: send request data
-      ]
-    );
+    /**
+     * @test
+     */
+    public function update_returns_an_ok_response()
+    {
+        $response = factory(\App\Response::class)->create();
+        $user = factory(\App\User::class)->create();
+        $response = $this->actingAs($user)->put(
+            route('response.update', [$response]),
+            [
+                // TODO: send request data
+            ]
+        );
 
-    $response->assertOk();
-  }
+        $response->assertOk();
+    }
 }

@@ -60,7 +60,7 @@ class AdminControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('admin.get.market'));
         $response->assertOk();
         $response->assertViewIs('admin-view');
-        $response->assertViewHas('variables');
+        $response->assertViewHas('items');
     }
 
     /**
