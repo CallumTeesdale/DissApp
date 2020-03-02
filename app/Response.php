@@ -11,4 +11,9 @@ class Response extends Model
     protected $fillable = [
         'id', 'id_survey', 'response', 'user_id', 'created_at',
     ];
+
+    public function survey()
+    {
+        return $this->belongsTo('App\Survey');
+    }
 }

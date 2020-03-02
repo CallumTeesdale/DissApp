@@ -18,10 +18,21 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        //
-        $surveys = Survey::where('creator_id', '!=', Auth::id())->orderBy('created_at', 'desc')->paginate(6);
+        //->orderBy('created_at', 'desc')->paginate(6);
 
-        return view('survey-listing', ['surveys' => $surveys]);
+
+        $response = Response::all();
+        $arrR_id = [];
+        foreach ($response as $r) {
+            if ($r->user_id === Auth::id()) {
+                array_push($arrR_id, $r->id_survey);
+            }
+        }
+        $surveys = Survey::where('creator_id', '!=', Auth::id())->orderBy('created_at', 'desc')->get();
+
+
+
+        return view('survey-listing', ['surveys' => $surveys->except($arrR_id)->paginate(6)]);
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <section class="account-view-wrap">
     <div class="profile-container">
         <div class="profile-data-container">
@@ -56,7 +56,7 @@
                     @endforeach
                     {{$categories->links()}}
                     @else
-                    <p>Choose and option</p>
+                    <p>Choose an option</p>
                     @endif
                 </div>
             </div>

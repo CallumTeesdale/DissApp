@@ -27,7 +27,7 @@ body {
   overflow-x: hidden;
 }
 
-.container {
+.main-container {
   width: 100vw;
   height: auto;
 }
@@ -37,9 +37,40 @@ header {
   height: 5%;
 }
 
+header nav {
+  float: right;
+  width: 50%;
+  text-align: right;
+  margin-right: 25px;
+}
+
 header nav ul {
   list-style: none;
   float: right;
+}
+
+header nav ul li {
+  float: left;
+  color: black;
+  font-size: 20px;
+  text-align: left;
+  margin-right: 25px;
+  letter-spacing: 2px;
+  transition: all 0.3s linear;
+}
+
+header nav ul li a {
+  color: black;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+}
+
+header nav ul li:hover a {
+  color: white;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
 }
 
 .logo {
@@ -51,32 +82,6 @@ header nav ul {
   margin-left: 25px;
   letter-spacing: 4px;
   font-size: 20px;
-}
-
-.navigation nav {
-  float: right;
-  width: 50%;
-  text-align: right;
-  margin-right: 25px;
-}
-
-nav ul li {
-  float: left;
-  color: black;
-  font-size: 20px;
-  text-align: left;
-  margin-right: 25px;
-  letter-spacing: 2px;
-  transition: all 0.3s linear;
-}
-
-ul li a {
-  color: black;
-  text-decoration: none;
-}
-
-ul li:hover a {
-  color: white;
 }
 
 .js-cookie-consent {

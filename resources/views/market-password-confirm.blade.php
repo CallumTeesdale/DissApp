@@ -3,10 +3,10 @@
 @section('content')
 <section class="login-wrap">
     <div class="login-container">
-        <p>  Please confirm your password to complete your purchase</p>
+        <p> Please confirm your password to complete your purchase</p>
         <form class="login-form" method="POST" action="{{ route('market.purchase') }}">
             @csrf
-            <input type="hidden" value="{{$id}}"name="id">
+            <input type="hidden" value="{{$id}}" name="id">
             <br>
             <input type="password" name="password" id="password" placeholder="password">
             <br>
