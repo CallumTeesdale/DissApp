@@ -47,6 +47,7 @@ class PurchaseReceipt extends Mailable
                 'marketName' => $this->market->name,
                 'marketDescription' => $this->market->description,
                 'marketPrice' => $this->market->price,
+                'marketImage' => $this->market->image,
                 'marketBarcode' => $html,
                 'barcodeString' => $barcode->barcode
 

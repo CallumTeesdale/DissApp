@@ -237,7 +237,8 @@ header nav ul li:hover a {
   box-shadow: 10px 10px 20px black;
 }
 
-.login-form input {
+.login-form input,
+.login-form select {
   display: block;
   height: 50px;
   width: 90%;
@@ -245,145 +246,148 @@ header nav ul li:hover a {
   border: none;
 }
 
-.login-form input::-webkit-input-placeholder {
+.login-form input::-webkit-input-placeholder, .login-form select::-webkit-input-placeholder {
   transform: translateY(0px);
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
-.login-form input::-moz-placeholder {
+.login-form input::-moz-placeholder, .login-form select::-moz-placeholder {
   transform: translateY(0px);
   -moz-transition: 0.5s;
   transition: 0.5s;
 }
 
-.login-form input:-ms-input-placeholder {
+.login-form input:-ms-input-placeholder, .login-form select:-ms-input-placeholder {
   transform: translateY(0px);
   -ms-transition: 0.5s;
   transition: 0.5s;
 }
 
-.login-form input::-ms-input-placeholder {
+.login-form input::-ms-input-placeholder, .login-form select::-ms-input-placeholder {
   transform: translateY(0px);
   -ms-transition: 0.5s;
   transition: 0.5s;
 }
 
-.login-form input::placeholder {
+.login-form input::placeholder,
+.login-form select::placeholder {
   transform: translateY(0px);
   transition: 0.5s;
 }
 
-.login-form input:hover {
+.login-form input:hover,
+.login-form select:hover {
   color: #717070;
   outline: none;
   border-bottom: 1px solid #717070;
 }
 
-.login-form input:hover::-webkit-input-placeholder {
+.login-form input:hover::-webkit-input-placeholder, .login-form select:hover::-webkit-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:hover::-moz-placeholder {
+.login-form input:hover::-moz-placeholder, .login-form select:hover::-moz-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:hover:-ms-input-placeholder {
+.login-form input:hover:-ms-input-placeholder, .login-form select:hover:-ms-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:hover::-ms-input-placeholder {
+.login-form input:hover::-ms-input-placeholder, .login-form select:hover::-ms-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:hover::placeholder {
+.login-form input:hover::placeholder,
+.login-form select:hover::placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:focus {
+.login-form input:focus,
+.login-form select:focus {
   color: #717070;
   outline: none;
   border-bottom: 1px solid #717070;
 }
 
-.login-form input:focus::-webkit-input-placeholder {
+.login-form input:focus::-webkit-input-placeholder, .login-form select:focus::-webkit-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:focus::-moz-placeholder {
+.login-form input:focus::-moz-placeholder, .login-form select:focus::-moz-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:focus:-ms-input-placeholder {
+.login-form input:focus:-ms-input-placeholder, .login-form select:focus:-ms-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:focus::-ms-input-placeholder {
+.login-form input:focus::-ms-input-placeholder, .login-form select:focus::-ms-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:focus::placeholder {
+.login-form input:focus::placeholder,
+.login-form select:focus::placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:active:focus {
+.login-form input:active:focus,
+.login-form select:active:focus {
   color: #717070;
   outline: none;
   border-bottom: 1px solid #717070;
 }
 
-.login-form input:active:focus::-webkit-input-placeholder {
+.login-form input:active:focus::-webkit-input-placeholder, .login-form select:active:focus::-webkit-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:active:focus::-moz-placeholder {
+.login-form input:active:focus::-moz-placeholder, .login-form select:active:focus::-moz-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:active:focus:-ms-input-placeholder {
+.login-form input:active:focus:-ms-input-placeholder, .login-form select:active:focus:-ms-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:active:focus::-ms-input-placeholder {
+.login-form input:active:focus::-ms-input-placeholder, .login-form select:active:focus::-ms-input-placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
+  transform: translateY(-18px);
 }
 
-.login-form input:active:focus::placeholder {
+.login-form input:active:focus::placeholder,
+.login-form select:active:focus::placeholder {
   color: #717070;
   position: relative;
-  transform: translateY(-20px);
-}
-
-.login-form label {
-  display: inline;
+  transform: translateY(-18px);
 }
 
 .login-form button {

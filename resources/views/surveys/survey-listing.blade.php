@@ -4,7 +4,10 @@
 @section('content')
 <div class="form-wrap">
     <div class="form-container">
+
+
         <div class="content-card">
+
             @foreach ($surveys as $surv)
 
             <a class="card" href="{{route('response.show', $surv->id)}}">

@@ -207,7 +207,8 @@ header {
     box-shadow: 10px 10px 20px black;
 }
 .login-form {
-    input {
+    input,
+    select {
         display: block;
         height: 50px;
         width: 90%;
@@ -226,8 +227,8 @@ header {
             &::placeholder {
                 color: #717070;
                 position: relative;
-                -webkit-transform: translateY(-20px);
-                transform: translateY(-20px);
+                -webkit-transform: translateY(-18px);
+                transform: translateY(-18px);
             }
         }
         &:focus {
@@ -237,8 +238,8 @@ header {
             &::placeholder {
                 color: #717070;
                 position: relative;
-                -webkit-transform: translateY(-20px);
-                transform: translateY(-20px);
+                -webkit-transform: translateY(-18px);
+                transform: translateY(-18px);
             }
         }
         &:active {
@@ -249,15 +250,13 @@ header {
                 &::placeholder {
                     color: #717070;
                     position: relative;
-                    -webkit-transform: translateY(-20px);
-                    transform: translateY(-20px);
+                    -webkit-transform: translateY(-18px);
+                    transform: translateY(-18px);
                 }
             }
         }
     }
-    label {
-        display: inline;
-    }
+
     button {
         cursor: pointer;
         display: flex;

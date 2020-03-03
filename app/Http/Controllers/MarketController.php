@@ -90,7 +90,7 @@ class MarketController extends Controller
                      * * Error in the processing of the transfer
                      */
                     $message = 'Error processing purchase, you have not been charged.';
-                    return view('generic-message-view', ['message' => $message, 'title' => 'Something went wrong']);
+                    return view('generic-message-view', ['message' => $e, 'title' => 'Something went wrong']);
                 }
             }
             //@codeCoverageIgnoreStopt

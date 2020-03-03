@@ -5,13 +5,15 @@
     <div class="form-container">
         <form action="" class="login-form">
             <br>
-            <input class="username" type="text" name="title" id="title" placeholder="title">
+            <input class="username form-control" type="text" name="title" id="title" placeholder="title"
+                onkeyup="countCharTitle(this)">
+            <small id="charcountTitle" class="form-text text-center text-muted">255</small>
             <br>
-            <input class="username" name="description" id="description" type="textarea" cols="30" rows="5"
-                placeholder="description">
+            <input class="username form-control" name="description" id="description" type="textarea"
+                onkeyup="countChar(this)" cols="30" rows="5" placeholder="description">
+            <small id="charcount" class="form-text text-center text-muted">255</small>
             <br>
-            <label for="category"> Select a category</label>
-            <select name="category" id="category">
+            <select name="category" id="category" class="form-control">
                 @foreach ($categories as $cat)
                 <option value="{{$cat->id}}"> {{$cat->name}}</option>
                 @endforeach
@@ -24,8 +26,23 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery-ui.min.js"></script>
 <script src="/js/form-builder.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script>
+    function countChar(val) {
+        var len = val.value.length;
+        if (len >= 255) {
+          val.value = val.value.substring(0, 255);
+        } else {
+          $('#charcount').text(255 - len);
+        }
+      };
+      function countCharTitle(val) {
+        var len = val.value.length;
+        if (len >= 255) {
+          val.value = val.value.substring(0, 255);
+        } else {
+          $('#charcountTitle').text(255 - len);
+        }
+      };
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -5,11 +5,11 @@
     <div class="login-container">
         <form class="login-form" action="" method="post">
             <br>
-            <input type="text" name="contact[name]" placeholder="Enter your name" class="username">
+            <input type="text" name="name" placeholder="Enter your name" class="username form-control">
             <br>
-            <input type="email" name="contact[email]" placeholder="Enter your email" class="username">
+            <input type="email" name="email" placeholder="Enter your email" class="username form-control">
             <br>
-            <input type="textarea" name="contact[enquiry]" placeholder="Enter your enquiry" class="username">
+            <input type="textarea" name="enquiry" placeholder="Enter your enquiry" class="username form-control">
             <br>
             <button type="submit" class="register" value="submit">Submit</button>
 
