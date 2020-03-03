@@ -382,6 +382,10 @@ header nav ul li:hover a {
   transform: translateY(-20px);
 }
 
+.login-form label {
+  display: inline;
+}
+
 .login-form button {
   cursor: pointer;
   display: flex;
@@ -501,7 +505,7 @@ header nav ul li:hover a {
 
 .surveys-container {
   display: inline-block;
-  max-width: 100%;
+  max-width: 50%;
   width: auto;
   min-width: 70vw;
 }

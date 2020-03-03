@@ -20,7 +20,7 @@ class HomeControllerTest extends TestCase
         $response = $this->get(route('about'));
 
         $response->assertOk();
-        $response->assertViewIs('about');
+        $response->assertViewIs('public.about');
 
         // TODO: perform additional assertions
     }
@@ -33,7 +33,7 @@ class HomeControllerTest extends TestCase
         $response = $this->get(route('contact'));
 
         $response->assertOk();
-        $response->assertViewIs('contact');
+        $response->assertViewIs('public.contact');
 
         // TODO: perform additional assertions
     }
@@ -46,7 +46,7 @@ class HomeControllerTest extends TestCase
         $response = $this->get(route('home'));
 
         $response->assertOk();
-        $response->assertViewIs('home');
+        $response->assertViewIs('public.home');
 
         // TODO: perform additional assertions
     }

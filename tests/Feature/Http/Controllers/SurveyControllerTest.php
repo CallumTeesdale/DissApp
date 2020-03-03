@@ -23,7 +23,7 @@ class SurveyControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('surveys.create'));
 
         $response->assertOk();
-        $response->assertViewIs('edit-survey');
+        $response->assertViewIs('surveys.edit-survey');
     }
 
 
@@ -83,6 +83,7 @@ class SurveyControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('surveys.index'));
 
         $response->assertOk();
+        $response->assertViewIs('surveys.survey-listing');
 
         // TODO: perform additional assertions
     }
@@ -102,7 +103,7 @@ class SurveyControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('surveys.show', $survey->id));
 
         $response->assertOk();
-        $response->assertViewIs('response-data-view');
+        $response->assertViewIs('surveys.response-data-view');
         $response->assertViewHas('charts');
 
         // TODO: perform additional assertions

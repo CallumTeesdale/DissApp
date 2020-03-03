@@ -9,7 +9,6 @@ $factory->define(App\Market::class, function (Faker $faker) {
         'id' => 1,
         'name' => 'faker',
         'price' => 3,
-        'barcode' => 1234567,
         'description' => 'description',
         'live' => 1,
         'image' => 'item.jpg'

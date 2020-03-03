@@ -96,7 +96,7 @@ class ResponseControllerTest extends TestCase
         );
 
         $response->assertOk();
-        $response->assertViewIs('render-survey');
+        $response->assertViewIs('response.render-survey');
         $response->assertViewHas('survey');
     }
 
@@ -135,7 +135,7 @@ class ResponseControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('successResponse'));
 
         $response->assertOk();
-        $response->assertViewIs('survey-response-success');
+        $response->assertViewIs('response.survey-response-success');
     }
     /**
      * @test
@@ -145,7 +145,7 @@ class ResponseControllerTest extends TestCase
         $response = $this->get(route('failResponse'));
 
         $response->assertOk();
-        $response->assertViewIs('survey-response-fail');
+        $response->assertViewIs('response.survey-response-fail');
     }
 
     /**

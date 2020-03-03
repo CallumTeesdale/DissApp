@@ -18,7 +18,6 @@ class Markets extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('price');
-            $table->integer('barcode');
             $table->string('description');
             $table->tinyInteger('live');
             $table->string('image')->default('item.jpg');

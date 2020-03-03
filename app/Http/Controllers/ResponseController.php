@@ -116,20 +116,20 @@ class ResponseController extends Controller
          */
         if ($exists->count()) {
             $message = 'You can\'t answer the same survey more than once';
-            return view('survey-response-fail', ['message' => $message]);
+            return view('response.survey-response-fail', ['message' => $message]);
         } elseif (Auth::id() == $survey->creator_id) {
 
             /**
              * * If the user trying to access the rendered survey is the creator, redirect them
              */
             $message = 'You can\'t answer your own';
-            return view('survey-response-fail', ['message' => $message]);
+            return view('response.survey-response-fail', ['message' => $message]);
         } else {
             /**
              * * If all checks pass then render the survey
              */
             return response()->view(
-                'render-survey',
+                'response.render-survey',
                 ['survey' => $survey, 'user' => $user],
                 200
             );
@@ -175,7 +175,7 @@ class ResponseController extends Controller
      */
     public function success()
     {
-        return view('survey-response-success');
+        return view('response.survey-response-success');
     }
 
     /**
@@ -183,6 +183,6 @@ class ResponseController extends Controller
      */
     public function fail()
     {
-        return view('survey-response-fail');
+        return view('response.survey-response-fail');
     }
 }

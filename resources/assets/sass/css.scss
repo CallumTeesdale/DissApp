@@ -255,6 +255,9 @@ header {
             }
         }
     }
+    label {
+        display: inline;
+    }
     button {
         cursor: pointer;
         display: flex;
@@ -365,7 +368,7 @@ header {
 }
 .surveys-container {
     display: inline-block;
-    max-width: 100%;
+    max-width: 50%;
     width: auto;
     min-width: 70vw;
     h1 {

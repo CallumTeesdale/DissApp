@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Market;
 use App\Category;
-
+use App\Barcode;
+use Exception;
 
 class AdminController extends Controller
 {
@@ -19,7 +20,7 @@ class AdminController extends Controller
             $message = 'You are not authorised';
             return view('generic-message-view', ['message' => $message]);
         }
-        return view('admin-view');
+        return view('admin.admin-view');
     }
 
 
@@ -35,7 +36,7 @@ class AdminController extends Controller
 
         $items = Market::paginate(6);
         $storage = 'market';
-        return view('admin-view', ['items' => $items, 'storage' => $storage]);
+        return view('admin.admin-view', ['items' => $items, 'storage' => $storage]);
     }
 
     /**
@@ -52,7 +53,7 @@ class AdminController extends Controller
             return view('generic-message-view', ['message' => $message]);
         }
         $item = Market::where('id', $id)->get()->first();
-        return view('market-item-form', ['item' => $item]);
+        return view('admin.market-item-form', ['item' => $item]);
     }
 
     /**
@@ -64,7 +65,7 @@ class AdminController extends Controller
             $message = 'You are not authorised';
             return view('generic-message-view', ['message' => $message]);
         }
-        return view('market-item-form');
+        return view('admin.market-item-form');
     }
 
     /**
@@ -94,32 +95,59 @@ class AdminController extends Controller
                     $request->image->storeAs('market', $imageName);
                     $market->image = $imageName;
                 }
-
+                if ($request->hasFile('barcodes')) {
+                    $file = fopen(request()->barcodes->getRealPath(), "r");
+                    while (($data = fgetcsv($file)) !== FALSE) {
+                        $barcode = Barcode::create([
+                            'item_id' => request()->id,
+                            'barcode' => $data[0]
+                        ]);
+                    }
+                }
                 /**
                  * * Save the edited info
                  */
                 $market->name = $request->name;
                 $market->description = $request->description;
                 $market->price = $request->price;
-                $market->barcode = $request->barcode;
                 $market->live = $request->live;
                 $market->save();
-
-                /**
-                 * * Create a new item
-                 */
-            } else {
+            }
+            /**
+             * * Create a new item
+             */
+            else {
                 $survey = Market::create([
                     'image' => 'item.jpg',
                     'name' => $request->name,
                     'description' => $request->description,
                     'price' => $request->price,
-                    'barcode' => $request->barcode,
                     'live' => $request->live,
                 ]);
+
+                /**
+                 * * Get the inserted id
+                 */
+
+                $market  = Market::where('id', $survey->id)->get()->first();
+
+                if ($request->hasFile('image')) {
+                    $imageName = $survey->id . '.' . request()->image->getClientOriginalExtension();
+                    $request->image->storeAs('market', $imageName);
+                    $market->image = $imageName;
+                    $market->save();
+                }
+                if ($request->hasFile('barcodes')) {
+                    $file = fopen(request()->barcodes->getRealPath(), "r");
+                    while (($data = fgetcsv($file)) !== FALSE) {
+                        $barcode = Barcode::create([
+                            'item_id' => $survey->id,
+                            'barcode' => $data[0]
+                        ]);
+                    }
+                }
+                return $this->getMarketItemAll();
             }
-            $variables = Market::all();
-            return view('admin-view', ['variables' => $variables]);
         }
         //@codeCoverageIgnoreStart
         catch (\Exception $e) {
@@ -127,7 +155,25 @@ class AdminController extends Controller
             return view('generic-message-view', ['message' => $message]);
         }
         //@codeCoverageIgnoreStop
-
+        $variables = Market::all();
+        return view('admin.admin-view', ['variables' => $variables]);
+    }
+    /**
+     * * Delete the market item
+     */
+    public function deleteItem($id)
+    {
+        if (Auth::user()->priv_level !== 1) {
+            $message = 'You are not authorised';
+            return view('generic-message-view', ['message' => $message]);
+        }
+        $item = Market::where('id', $id)->get()->first();
+        $barcodes = Barcode::where('item_id', $id)->get();
+        $dItem = $item->delete();
+        foreach ($barcodes as $bar) {
+            $bar->delete();
+        }
+        return $this->getMarketItemAll();
     }
 
     /**
@@ -141,10 +187,83 @@ class AdminController extends Controller
         }
         $categories = Category::paginate(6);
         $storage = 'categories';
-        return view('admin-view', ['categories' => $categories, 'storage' => $storage]);
+        return view('admin.admin-view', ['categories' => $categories, 'storage' => $storage]);
     }
-    public function editCategory()
+
+    /**
+     * * Display the category creation form
+     */
+    public function editCategory($id)
     {
-        # code...
+        if (Auth::user()->priv_level !== 1) {
+            $message = 'You are not authorised';
+            return view('generic-message-view', ['message' => $message]);
+        }
+        $category = Category::where('id', $id)->get()->first();
+        return view('admin.category-form', ['category' => $category]);
+    }
+
+    /**
+     * * Save the category
+     */
+
+    public function postCategory(Request $request)
+    {
+        if (Auth::user()->priv_level !== 1) {
+            $message = 'You are not authorised';
+            return view('generic-message-view', ['message' => $message]);
+        }
+
+        try {
+
+            /**
+             * * If an id was posted then edit the existing item by the posted id
+             */
+            if (!empty($request->id)) {
+                $category  = Category::where('id', request()->id)->get()->first();
+
+                /**
+                 * * If a new image was uploaded save the new image
+                 */
+                if ($request->hasFile('image')) {
+                    $imageName = request()->id . '.' . request()->image->getClientOriginalExtension();
+                    $request->image->storeAs('categories', $imageName);
+                }
+                $category->name = $request->name;
+                $category->save();
+            }
+            /**
+             * * Create a new item
+             */
+            else {
+                $cat = $category = Category::create([
+                    'name' => $request->name,
+                ]);
+
+                if ($request->hasFile('image')) {
+                    $imageName = $cat->id . '.' . request()->image->getClientOriginalExtension();
+                    $request->image->storeAs('categories', $imageName);
+                }
+            }
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            return view('generic-message-view', ['message' => $message]);
+        }
+        return $this->getCategoriesAll();
+    }
+
+    /**
+     * * Delete the category
+     */
+
+    public function deleteCategory($id)
+    {
+        if (Auth::user()->priv_level !== 1) {
+            $message = 'You are not authorised';
+            return view('generic-message-view', ['message' => $message]);
+        }
+        $category = Category::where('id', $id)->get()->first();
+        $dCategory = $category->delete();
+        return $this->getCategoriesAll();
     }
 }

@@ -36,7 +36,7 @@ class ProfileController extends Controller
         $contract = new ContractInteractions();
         $balance = $contract->contractGetBalance(Auth::user()->public_key);
         $surveys = Survey::where('creator_id', Auth::id())->get()->sortByDesc('created_at');
-        return response()->view('profile', ['surveys' => $surveys, 'balance' => $balance], 200);
+        return response()->view('profile.profile', ['surveys' => $surveys, 'balance' => $balance], 200);
     }
 
     /**
@@ -45,7 +45,7 @@ class ProfileController extends Controller
     public function getProfileEdit()
     {
         $user = User::where('id', Auth::id())->first();
-        return view('edit-profile-form', ['user' => $user]);
+        return view('profile.edit-profile-form', ['user' => $user]);
     }
 
     /**
@@ -103,5 +103,19 @@ class ProfileController extends Controller
             $message = $e->getMessage();
             return view('generic-message-view', ['message' => $message]);
         }
+    }
+
+    /**
+     * * Delete the account
+     */
+
+    public function deleteProfile($id)
+    {
+        if (Auth::id() == $id) {
+            $account = User::whereId(Auth::id())->get()->first();
+            $account->delete();
+            return \redirect('/');
+        }
+        return \redirect('/profile');
     }
 }

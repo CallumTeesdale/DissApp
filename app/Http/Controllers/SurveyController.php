@@ -39,7 +39,7 @@ class SurveyController extends Controller
         /**
          *  * Return with the surveys that aren't the creator logged in or the user hasn't answered
          */
-        return view('survey-listing', ['surveys' => $surveys->except($arrR_id)->paginate(6)]);
+        return view('surveys.survey-listing', ['surveys' => $surveys->except($arrR_id)->paginate(6)]);
     }
 
     /**
@@ -51,7 +51,7 @@ class SurveyController extends Controller
     {
         //
         $categories = Category::all();
-        return view('edit-survey', ['categories' => $categories]);
+        return view('surveys.edit-survey', ['categories' => $categories]);
     }
 
     /**
@@ -148,7 +148,7 @@ class SurveyController extends Controller
             $charts = 'No results yet';
         }
 
-        return response()->view('response-data-view', ['charts' => $charts], 200);
+        return response()->view('surveys.response-data-view', ['charts' => $charts], 200);
     }
 
     /**

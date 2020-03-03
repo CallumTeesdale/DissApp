@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Market;
+use App\Barcode;
 
 class MarketControllerTest extends TestCase
 {
@@ -20,7 +21,7 @@ class MarketControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('market'));
         $response->assertOk();
-        $response->assertViewIs('market-view');
+        $response->assertViewIs('market.market-view');
     }
     /**
      * @test
@@ -35,7 +36,7 @@ class MarketControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('market.buy', 1));
         $response->assertOk();
-        $response->assertViewIs('market-password-confirm');
+        $response->assertViewIs('market.market-password-confirm');
         $response->assertViewHas('id');
     }
     /**
@@ -44,6 +45,7 @@ class MarketControllerTest extends TestCase
     public function buy_item_returns_ok_purchase()
     {
         $user = factory(\App\User::class)->create();
+        $barcodes = factory(\App\Barcode::class)->create();
         $item = factory(\App\Market::class)->create([
             'id' => 1,
         ]);
@@ -74,6 +76,6 @@ class MarketControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('generic-message-view');
-        $response->assertViewHas('title', 'Enjoy!');
+        $response->assertViewHas('title', 'Something went wrong');
     }
 }

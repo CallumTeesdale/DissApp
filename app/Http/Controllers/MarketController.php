@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Market;
+use App\Mail\PurchaseReceipt;
+use Illuminate\Support\Facades\Mail;
 use App\ContractInteractions;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +17,7 @@ class MarketController extends Controller
     public function index()
     {
         $variables = Market::all();
-        return view('market-view', ['variables' => $variables]);
+        return view('market.market-view', ['variables' => $variables]);
     }
     /**
      * Display the specified resource.
@@ -26,7 +28,7 @@ class MarketController extends Controller
     public function buyItemPasswordConfirmForm($id)
     {
         $id = $id;
-        return view('market-password-confirm', ['id' => $id]);
+        return view('market.market-password-confirm', ['id' => $id]);
     }
 
     public function buyItem(Request $request)
@@ -79,6 +81,7 @@ class MarketController extends Controller
                         $password,
                         $item->price
                     );
+                    Mail::to(Auth::user()->email)->send(new PurchaseReceipt($item));
                 }
                 //@codeCoverageIgnoreStart
                 catch (Exception $e) {
@@ -111,7 +114,7 @@ class MarketController extends Controller
         /**
          * * If all succesful return
          */
-        $message = 'Thank you for your purchase.';
+        $message = 'Thank you for your purchase. An email has been sent containing the purchase receipt and redemption details';
         return view('generic-message-view', ['message' => $message, 'title' => 'Enjoy!']);
     }
 }

@@ -8,7 +8,6 @@ $factory->define(App\Category::class, function (Faker $faker) {
     return [
         'id' => 1,
         'name' => $faker->name,
-        'image' => $faker->word,
 
     ];
 });

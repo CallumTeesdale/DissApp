@@ -23,17 +23,7 @@ Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 
 
-/**
- *
- * * Profile controller routes
- */
-Route::get('/profile', 'ProfileController@getProfile')->name('profile');
-Route::get('/profile/edit', 'ProfileController@getProfileEdit')->name(
-    'edit.profile'
-);
-Route::post('/profile/edit', 'ProfileController@postProfileEdit')->name(
-    'edit.profile'
-);
+
 
 /**
  * * Survey Controller routes
@@ -56,6 +46,21 @@ Route::get('/response/submit/fail', 'ResponseController@fail')->name('failRespon
  */
 Auth::routes();
 
+/**
+ *
+ * * Profile controller routes
+ */
+Route::get('/profile', 'ProfileController@getProfile')->name('profile')->middleware('auth');
+Route::get('/profile/edit', 'ProfileController@getProfileEdit')->name(
+    'edit.profile'
+)->middleware('auth');
+Route::post('/profile/edit', 'ProfileController@postProfileEdit')->name(
+    'edit.profile'
+)->middleware('auth');
+Route::post('/profile/delete/{id}', 'ProfileController@deleteProfile')->name(
+    'profile.delete'
+)->middleware('auth');
+
 
 /**
  * * Market Place Routes
@@ -70,6 +75,7 @@ Route::get('/market/buy/{id}', 'MarketController@buyItemPasswordConfirmForm')
 Route::post('/market/purcahse', 'MarketController@buyItem')
     ->name('market.purchase')
     ->middleware('auth');
+
 
 
 /**
@@ -94,6 +100,9 @@ Route::get('/admin/market/create/', 'AdminController@createMarketItem')
 Route::post('/admin/market/save', 'AdminController@postMarketItem')
     ->name('admin.market.post.item')
     ->middleware('auth');
+Route::post('/market/delete/{id}', 'AdminController@deleteItem')
+    ->name('admin.market.item.delete')
+    ->middleware('auth');
 
 
 /**
@@ -104,4 +113,10 @@ Route::get('/admin/categories', 'AdminController@getCategoriesAll')
     ->middleware('auth');
 Route::get('/admin/categories/edit/{id}', 'AdminController@editCategory')
     ->name('admin.edit.category')
+    ->middleware('auth');
+Route::post('/admin/category/save', 'AdminController@postCategory')
+    ->name('admin.category.post')
+    ->middleware('auth');
+Route::post('/admin/category/delete/{id}', 'AdminController@deleteCategory')
+    ->name('admin.category.delete')
     ->middleware('auth');
