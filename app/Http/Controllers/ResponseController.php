@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Exception;
 
+/**
+ * Class ResponseController
+ * @package App\Http\Controllers
+ */
 class ResponseController extends Controller
 {
     /**

@@ -12,9 +12,15 @@ use Illuminate\Support\Facades\Auth;
 use App\EthEth;
 use App\Barcode;
 
+/**
+ * Class MarketController
+ * @package App\Http\Controllers
+ */
 class MarketController extends Controller
 {
-    //
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $variables = [];
@@ -41,6 +47,10 @@ class MarketController extends Controller
         return view('market.market-password-confirm', ['id' => $id]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function buyItem(Request $request)
     {
         /**
@@ -91,23 +101,24 @@ class MarketController extends Controller
                         $password,
                         $item->price
                     );
+
                     Mail::to(Auth::user()->email)->send(new PurchaseReceipt($item));
                 }
                 //@codeCoverageIgnoreStart
-                catch (Exception $e) {
+                catch (\Exception $e) {
 
                     /**
                      * * Error in the processing of the transfer
                      */
                     $message = 'Error processing purchase, you have not been charged.';
-                    return view('generic-message-view', ['message' => $e, 'title' => 'Something went wrong']);
+                    return view('generic-message-view', ['message' => $message, 'title' => 'Something went wrong']);
                 }
             }
             //@codeCoverageIgnoreStopt
             else {
 
                 /**
-                 * * Error in validating that the user has enoug funds
+                 * * Error in validating that the user has enough funds
                  */
                 return view('generic-message-view', ['message' => 'Not enough funds', 'title', 'Something went wrong']);
             }

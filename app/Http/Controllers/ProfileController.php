@@ -11,6 +11,10 @@ use App\User;
 use App\ContractInteractions;
 
 
+/**
+ * Class ProfileController
+ * @package App\Http\Controllers
+ */
 class ProfileController extends Controller
 {
     /**

@@ -64,6 +64,7 @@ class MarketControllerTest extends TestCase
      */
     public function buy_item_returns_error_purchase()
     {
+        $this->withoutExceptionHandling();
         $user = factory(\App\User::class)->create();
         $item = factory(\App\Market::class)->create([
             'id' => 1,
