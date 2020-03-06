@@ -26,14 +26,14 @@ class SurveyController extends Controller
         $arrR_id = [];
         foreach ($response as $r) {
             if ($r->user_id === Auth::id()) {
-                array_push($arrR_id, $r->id_survey); //@codeCoverageIgnore
+                array_push($arrR_id, $r->survey_id); //@codeCoverageIgnore
             }
         }
 
         /**
          * * Don't allow creator to find their own surveys
          */
-        $surveys = Survey::where('creator_id', '!=', Auth::id())->orderBy('created_at', 'desc')->get();
+        $surveys = Survey::where('user_id', '!=', Auth::id())->orderBy('created_at', 'desc')->get();
 
 
         /**
@@ -68,7 +68,7 @@ class SurveyController extends Controller
         $formData = \json_encode($json['json']);
         $survey = Survey::create([
             'form_data' => $formData,
-            'creator_id' => Auth::id(),
+            'user_id' => Auth::id(),
             'category' => $json['category'],
             'survey_title' => $json['title'],
             'survey_description' => $json['description']
@@ -96,7 +96,7 @@ class SurveyController extends Controller
     public function show($id)
     {
         //Collect all responses to survey
-        $responses = Response::where('id_survey', $id)->get();
+        $responses = Response::where('survey_id', $id)->get();
         $data = [];
         if ($responses->count()) {
 
@@ -182,6 +182,10 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $survey = Survey::where('id', $id)->get()->first();
+        if (Auth::id() == $survey->user_id) {
+            $survey->delete();
+        }
+        return \redirect('/profile');
     }
 }

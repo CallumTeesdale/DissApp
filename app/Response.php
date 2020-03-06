@@ -9,6 +9,6 @@ class Response extends Model
     const UPDATED_AT = null;
     //
     protected $fillable = [
-        'id', 'id_survey', 'response', 'user_id', 'created_at',
+        'id', 'survey_id', 'response', 'user_id', 'created_at',
     ];
 }

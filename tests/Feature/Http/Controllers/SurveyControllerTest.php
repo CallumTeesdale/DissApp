@@ -96,7 +96,7 @@ class SurveyControllerTest extends TestCase
         $user = factory(\App\User::class)->create();
         $survey = factory(\App\Survey::class)->create();
         $response = factory(\App\Response::class)->create([
-            'id_survey' => $survey->id
+            'survey_id' => $survey->id
         ]);
 
 

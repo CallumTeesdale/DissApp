@@ -16,7 +16,7 @@ class Responses extends Migration
         //
         Schema::create('responses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_survey');
+            $table->integer('survey_id');
             $table->json('response');
             $table->integer('user_id');
             $table->dateTime('created_at')->useCurrent();

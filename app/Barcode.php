@@ -9,6 +9,6 @@ class Barcode extends Model
     //
     public $timestamps = FALSE;
     public $fillable = [
-        'id', 'item_id', 'barcode'
+        'id', 'market_id', 'barcode'
     ];
 }

@@ -33,10 +33,17 @@ class AdminController extends Controller
             $message = 'You are not authorised';
             return view('generic-message-view', ['message' => $message]);
         }
+        $countBar = [];
+        $items = Market::all();
+        foreach ($items as $item) {
+            $barcodes = Barcode::where('market_id', $item->id)->get();
+            if (!empty($barcodes)) {
 
-        $items = Market::paginate(6);
+                $countBar[$item->id] = count($barcodes);
+            }
+        }
         $storage = 'market';
-        return view('admin.admin-view', ['items' => $items, 'storage' => $storage]);
+        return view('admin.admin-view', ['items' => $items->paginate(6), 'storage' => $storage, 'barcodes' => $countBar]);
     }
 
     /**
@@ -99,7 +106,7 @@ class AdminController extends Controller
                     $file = fopen(request()->barcodes->getRealPath(), "r");
                     while (($data = fgetcsv($file)) !== FALSE) {
                         $barcode = Barcode::create([
-                            'item_id' => request()->id,
+                            'market_id' => request()->id,
                             'barcode' => $data[0]
                         ]);
                     }
@@ -141,7 +148,7 @@ class AdminController extends Controller
                     $file = fopen(request()->barcodes->getRealPath(), "r");
                     while (($data = fgetcsv($file)) !== FALSE) {
                         $barcode = Barcode::create([
-                            'item_id' => $survey->id,
+                            'market_id' => $survey->id,
                             'barcode' => $data[0]
                         ]);
                     }
@@ -168,7 +175,7 @@ class AdminController extends Controller
             return view('generic-message-view', ['message' => $message]);
         }
         $item = Market::where('id', $id)->get()->first();
-        $barcodes = Barcode::where('item_id', $id)->get();
+        $barcodes = Barcode::where('market_id', $id)->get();
         $dItem = $item->delete();
         foreach ($barcodes as $bar) {
             $bar->delete();

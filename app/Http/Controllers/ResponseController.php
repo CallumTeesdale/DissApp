@@ -55,7 +55,7 @@ class ResponseController extends Controller
          * * Save the data
          */
         $response = Response::create([
-            'id_survey' => $decode['survey_id'],
+            'survey_id' => $decode['survey_id'],
             'response' => $userData,
             'user_id' => Auth::id()
         ]);
@@ -103,8 +103,8 @@ class ResponseController extends Controller
          * * Get the survey, the user who created the survey, and any responses to the survey
          */
         $survey = Survey::find($id);
-        $user = User::where('id', $survey->creator_id)->first();
-        $responses = Response::where('id_survey', $id)->get();
+        $user = User::where('id', $survey->user_id)->first();
+        $responses = Response::where('survey_id', $id)->get();
 
         /**
          * * Check whether the logged in user has all ready answered the survey
@@ -117,7 +117,7 @@ class ResponseController extends Controller
         if ($exists->count()) {
             $message = 'You can\'t answer the same survey more than once';
             return view('response.survey-response-fail', ['message' => $message]);
-        } elseif (Auth::id() == $survey->creator_id) {
+        } elseif (Auth::id() == $survey->user_id) {
 
             /**
              * * If the user trying to access the rendered survey is the creator, redirect them

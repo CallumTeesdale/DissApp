@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Barcode;
 use App\Market;
+use Illuminate\Validation\Rules\Exists;
 use \Milon\Barcode\DNS2D;
 
 class PurchaseReceipt extends Mailable
@@ -39,18 +40,22 @@ class PurchaseReceipt extends Mailable
      */
     public function build()
     {
-        $barcode = Barcode::where('item_id', $this->market->id)->get()->first();
-        $html = DNS2D::getBarcodeHTML($barcode->barcode, "QRCODE");
-        $barcodeDelete = $barcode->delete();
-        return $this->view('mail.purchase-mail')
-            ->with([
-                'marketName' => $this->market->name,
-                'marketDescription' => $this->market->description,
-                'marketPrice' => $this->market->price,
-                'marketImage' => $this->market->image,
-                'marketBarcode' => $html,
-                'barcodeString' => $barcode->barcode
+        $barcode = Barcode::where('market_id', $this->market->id)->get()->first();
 
-            ]);
+
+        if ($barcode->exists()) {
+            $html = DNS2D::getBarcodeHTML($barcode->barcode, "QRCODE");
+            $barcodeDelete = $barcode->delete();
+            return $this->view('mail.purchase-mail')
+                ->with([
+                    'marketName' => $this->market->name,
+                    'marketDescription' => $this->market->description,
+                    'marketPrice' => $this->market->price,
+                    'marketImage' => $this->market->image,
+                    'marketBarcode' => $html,
+                    'barcodeString' => $barcode->barcode
+
+                ]);
+        }
     }
 }

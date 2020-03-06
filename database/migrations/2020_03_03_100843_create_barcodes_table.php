@@ -15,7 +15,7 @@ class CreateBarcodesTable extends Migration
     {
         Schema::create('barcodes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('item_id');
+            $table->integer('market_id');
             $table->string('barcode');
         });
     }

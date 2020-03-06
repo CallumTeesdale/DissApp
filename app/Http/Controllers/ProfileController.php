@@ -35,7 +35,7 @@ class ProfileController extends Controller
          */
         $contract = new ContractInteractions();
         $balance = $contract->contractGetBalance(Auth::user()->public_key);
-        $surveys = Survey::where('creator_id', Auth::id())->get()->sortByDesc('created_at');
+        $surveys = Survey::where('user_id', Auth::id())->get()->sortByDesc('created_at');
         return response()->view('profile.profile', ['surveys' => $surveys, 'balance' => $balance], 200);
     }
 

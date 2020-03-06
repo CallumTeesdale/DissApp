@@ -84,7 +84,7 @@ class ResponseControllerTest extends TestCase
         $user1 = factory(\App\User::class)->create();
         $survey = factory(\App\Survey::class)->create([
             'id' => 1,
-            'creator_id' => 1
+            'user_id' => 1
         ]);
         $user2 = factory(\App\User::class)->create([
             'id' => 5,

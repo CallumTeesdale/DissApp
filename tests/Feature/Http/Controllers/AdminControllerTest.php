@@ -266,7 +266,7 @@ class AdminControllerTest extends TestCase
             'priv_level' => 1,
         ]);
         $item = factory(\App\Market::class)->create();
-        $barcodes = factory(\App\Barcode::class)->create(['item_id' => $item->id]);
+        $barcodes = factory(\App\Barcode::class)->create(['market_id' => $item->id]);
 
         $response = $this->actingAs($user)->post(route('admin.market.item.delete', $item->id));
         $response->assertOk();
@@ -281,7 +281,7 @@ class AdminControllerTest extends TestCase
             'priv_level' => 0,
         ]);
         $item = factory(\App\Market::class)->create();
-        $barcodes = factory(\App\Barcode::class)->create(['item_id' => $item->id]);
+        $barcodes = factory(\App\Barcode::class)->create(['market_id' => $item->id]);
 
         $response = $this->actingAs($user)->post(route('admin.market.item.delete', $item->id));
         $response->assertOk();

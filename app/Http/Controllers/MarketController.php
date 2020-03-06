@@ -10,13 +10,23 @@ use App\ContractInteractions;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use App\EthEth;
+use App\Barcode;
 
 class MarketController extends Controller
 {
     //
     public function index()
     {
-        $variables = Market::all();
+        $variables = [];
+        $items = Market::all();
+        foreach ($items as $item) {
+            $barcodes = Barcode::where('market_id', $item->id)->get();
+            if (!empty($barcodes)) {
+                \array_push($variables, $item);
+            }
+        }
+
+
         return view('market.market-view', ['variables' => $variables]);
     }
     /**

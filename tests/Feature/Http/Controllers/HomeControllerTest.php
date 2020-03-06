@@ -21,7 +21,6 @@ class HomeControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('public.about');
-
         // TODO: perform additional assertions
     }
 

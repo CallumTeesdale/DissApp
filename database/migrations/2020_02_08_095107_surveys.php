@@ -17,7 +17,7 @@ class Surveys extends Migration
         Schema::create('surveys', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->json('form_data');
-            $table->integer('creator_id');
+            $table->integer('user_id');
             $table->dateTime('created_at', 0)->useCurrent();
             $table->integer('category');
             $table->string('survey_title');

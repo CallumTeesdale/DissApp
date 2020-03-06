@@ -50,6 +50,7 @@
                 <ul>
                     <p>{{$survey->survey_description}}</p>
                     <a class="link" href="{{route('surveys.show',  $survey->id)}}"> View Data</a>
+                    <a class="link" href="{{route('surveys.destroy',  $survey->id)}}"> Delete</a>
                 </ul>
             </div>
             @endforeach

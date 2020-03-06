@@ -29,6 +29,8 @@ Route::get('/contact', 'HomeController@contact')->name('contact');
  * * Survey Controller routes
  */
 Route::resource('surveys', 'SurveyController')->middleware('auth');
+Route::get('surveys/destroy/{id}', 'SurveyController@destroy')->name('surveys.destroy')->middleware('auth');
+
 
 
 

@@ -26,6 +26,7 @@
                             <p>{{$var->description}}</p>
                             <p>Price: {{$var->price}} ST </p>
                             <p>Live: {{$var->live}}</p>
+                            <p>Barcodes Left: {{$barcodes[$var->id]}} </p>
                             <p>Date Created: {{$var->created_at}} ST</p>
 
                             <button class="button">Edit</button>
