@@ -74,7 +74,7 @@ Route::get('/market/buy/{id}', 'MarketController@buyItemPasswordConfirmForm')
     ->name('market.buy')
     ->middleware('auth');
 
-Route::post('/market/purcahse', 'MarketController@buyItem')
+Route::post('/market/purchase', 'MarketController@buyItem')
     ->name('market.purchase')
     ->middleware('auth');
 
@@ -112,6 +112,9 @@ Route::post('/market/delete/{id}', 'AdminController@deleteItem')
  */
 Route::get('/admin/categories', 'AdminController@getCategoriesAll')
     ->name('admin.get.categories')
+    ->middleware('auth');
+Route::get('/admin/categories/create', 'AdminController@createCategory')
+    ->name('admin.create.categories')
     ->middleware('auth');
 Route::get('/admin/categories/edit/{id}', 'AdminController@editCategory')
     ->name('admin.edit.category')

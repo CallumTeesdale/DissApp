@@ -7,14 +7,36 @@ use Web3\Web3;
 use App\EthPersonal;
 use Exception;
 
+/**
+ * Class ContractInteractions
+ * @package app
+ */
 class ContractInteractions
 {
+    /**
+     * @var Web3
+     */
     private $web3;
+    /**
+     * @var
+     */
     private $Abi;
+    /**
+     * @var
+     */
     private $contractAddress;
+    /**
+     * @var
+     */
     private $contractOwner;
+    /**
+     * @var
+     */
     private $AccountsEth;
 
+    /**
+     * ContractInteractions constructor.
+     */
     public function __construct()
     {
         /**
@@ -27,6 +49,10 @@ class ContractInteractions
         $this->web3 = new Web3('http://localhost:8545');
     }
 
+    /**
+     * @param $account
+     * @return string
+     */
     public function contractGetBalance($account)
     {
         /**
@@ -65,21 +91,21 @@ class ContractInteractions
 
     /**
      * * Function to transfer tokens from one account to the other
-     *  @param string $toAccount
+     * @param string $toAccount
      *  hex representation of the account the transfer will go to
      *
-     *  @param string $fromAccount
+     * @param string $fromAccount
      *  hex representation of the account the transfer is from
      *
-     *  @param string $password
+     * @param string $password
      *  the password of the from account to allow the unlock
      *
-     *  @param int $ammount
+     * @param int $ammount
      *  int representation of the amount to be transferred
      *
-     *  @return mixed
+     * @return mixed
      *  Returns a view
-     *
+     * @throws Exception
      */
     public function transfer($toAccount, $fromAccount, $password, $ammount)
     {

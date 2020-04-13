@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 
+use Exception;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use App\Survey;
 use App\User;
 use App\ContractInteractions;
+use function redirect;
 
 
 /**
@@ -30,7 +33,7 @@ class ProfileController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function getProfile()
     {
@@ -100,7 +103,7 @@ class ProfileController extends Controller
             ]);
 
             return redirect('/profile');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             /**
              * * Catch any errors
              */
@@ -118,8 +121,8 @@ class ProfileController extends Controller
         if (Auth::id() == $id) {
             $account = User::whereId(Auth::id())->get()->first();
             $account->delete();
-            return \redirect('/');
+            return redirect('/');
         }
-        return \redirect('/profile');
+        return redirect('/profile');
     }
 }

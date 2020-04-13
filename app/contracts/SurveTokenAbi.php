@@ -1,9 +1,10 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$web3 = new \Web3\Web3('http://localhost:8545');
+$web3 = new Web3('http://localhost:8545');
 
 use \Web3\Contract;
+use Web3\Web3;
 
 $Abi = '[
 	{

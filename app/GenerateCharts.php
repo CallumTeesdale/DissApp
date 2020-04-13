@@ -29,9 +29,9 @@ class GenerateCharts
         foreach ($array as $key => $value) {
 
             /**
-             * * Text and text area are tp be representd as a table
+             * * Text and text area and number are to be representd as a table
              */
-            if ($value[0] == 'text' || $value[0]  == 'textarea') {
+            if ($value[0] == 'text' || $value[0]  == 'textarea' || $value[0] == 'number') {
 
                 $table = '
                 <button onclick="myFunction(\'' . $key . '\')" class="g-button block bl">' . $key . '</button>
@@ -192,7 +192,7 @@ class GenerateCharts
 
 
                 /**
-                 * * Turn the merged array into a comma seperated string
+                 * * Turn the merged array into a comma separated string
                  */
                 $string = '';
                 foreach ($merge as $mkey => $mvalue) {

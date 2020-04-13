@@ -6,7 +6,10 @@
         <div class="profile-data-container">
             <div class="profile-data">
                 <h1>menu</h1>
+                <a class="link" href="{{route('admin.market.create.item')}}">Create Market Item</a>
                 <a class="link" href="{{route('admin.get.market')}}">View market Items</a>
+
+                <a class="link" href="{{route('admin.create.categories')}}">Create Category</a>
                 <a class="link" href="{{route('admin.get.categories')}}">View categories</a>
             </div>
         </div>

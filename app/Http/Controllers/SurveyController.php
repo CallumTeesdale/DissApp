@@ -8,6 +8,9 @@ use App\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
+use function json_decode;
+use function json_encode;
+use function redirect;
 
 class SurveyController extends Controller
 {
@@ -57,15 +60,15 @@ class SurveyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
         $data = $request->getContent();
-        $json = \json_decode($data, true);
-        $formData = \json_encode($json['json']);
+        $json = json_decode($data, true);
+        $formData = json_encode($json['json']);
         $survey = Survey::create([
             'form_data' => $formData,
             'user_id' => Auth::id(),
@@ -165,7 +168,7 @@ class SurveyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -186,6 +189,6 @@ class SurveyController extends Controller
         if (Auth::id() == $survey->user_id) {
             $survey->delete();
         }
-        return \redirect('/profile');
+        return redirect('/profile');
     }
 }

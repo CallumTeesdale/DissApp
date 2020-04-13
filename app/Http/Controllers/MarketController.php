@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use App\Market;
 use App\Mail\PurchaseReceipt;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use App\ContractInteractions;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use App\EthEth;
 use App\Barcode;
+use Illuminate\View\View;
+use function array_push;
 
 /**
  * Class MarketController
@@ -19,7 +23,7 @@ use App\Barcode;
 class MarketController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {
@@ -28,7 +32,7 @@ class MarketController extends Controller
         foreach ($items as $item) {
             $barcodes = Barcode::where('market_id', $item->id)->get();
             if (!empty($barcodes)) {
-                \array_push($variables, $item);
+                array_push($variables, $item);
             }
         }
 
@@ -39,7 +43,7 @@ class MarketController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function buyItemPasswordConfirmForm($id)
     {
@@ -49,7 +53,7 @@ class MarketController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function buyItem(Request $request)
     {
@@ -101,11 +105,10 @@ class MarketController extends Controller
                         $password,
                         $item->price
                     );
-
                     Mail::to(Auth::user()->email)->send(new PurchaseReceipt($item));
                 }
                 //@codeCoverageIgnoreStart
-                catch (\Exception $e) {
+                catch (Exception $e) {
 
                     /**
                      * * Error in the processing of the transfer
@@ -114,7 +117,7 @@ class MarketController extends Controller
                     return view('generic-message-view', ['message' => $message, 'title' => 'Something went wrong']);
                 }
             }
-            //@codeCoverageIgnoreStopt
+            //@codeCoverageIgnoreStop
             else {
 
                 /**

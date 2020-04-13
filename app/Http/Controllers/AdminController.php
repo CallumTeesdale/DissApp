@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Market;
 use App\Category;
@@ -54,7 +55,7 @@ class AdminController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
 
     public function editMarketItem($id)
@@ -161,7 +162,7 @@ class AdminController extends Controller
             }
         }
         //@codeCoverageIgnoreStart
-        catch (\Exception $e) {
+        catch (Exception $e) {
             $message = $e->getMessage();
             return view('generic-message-view', ['message' => $message]);
         }
@@ -276,5 +277,16 @@ class AdminController extends Controller
         $category = Category::where('id', $id)->get()->first();
         $dCategory = $category->delete();
         return $this->getCategoriesAll();
+    }
+    /**
+     * * Display the market item creation form
+     */
+    public function createCategory()
+    {
+        if (Auth::user()->priv_level !== 1) {
+            $message = 'You are not authorised';
+            return view('generic-message-view', ['message' => $message]);
+        }
+        return view('admin.category-form');
     }
 }

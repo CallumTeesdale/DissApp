@@ -10,6 +10,8 @@ use App\EthPersonal;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Exception;
+use function json_decode;
+use function json_encode;
 
 /**
  * Class ResponseController
@@ -40,7 +42,7 @@ class ResponseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -51,8 +53,8 @@ class ResponseController extends Controller
 
         $contractOwner = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1';
         $data = $request->getContent();
-        $decode = \json_decode($data, true);
-        $userData = \json_encode($decode['userData']);
+        $decode = json_decode($data, true);
+        $userData = json_encode($decode['userData']);
 
 
         /**
@@ -154,7 +156,7 @@ class ResponseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

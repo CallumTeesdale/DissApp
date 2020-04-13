@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Facade\FlareClient\View;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 
 
@@ -14,7 +15,7 @@ class HomeController extends Controller
 {
     //
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -23,7 +24,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function about()
     {
@@ -31,7 +32,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function contact()
     {
