@@ -1,7 +1,7 @@
 import os
 import glob
 
-for filepath in glob.glob('**/*.scss', recursive=True):
+for filepath in glob.glob('**/*.abi', recursive=True):
     print(filepath)
     if os.path.isfile(filepath) and filepath != "source.txt":
         a = open('source.txt', 'a+')
