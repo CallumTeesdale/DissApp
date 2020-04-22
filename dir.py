@@ -1,7 +1,7 @@
 import os
 import glob
 
-for filepath in glob.glob('**/*.js', recursive=True):
+for filepath in glob.glob('**/*.scss', recursive=True):
     print(filepath)
     if os.path.isfile(filepath) and filepath != "source.txt":
         a = open('source.txt', 'a+')
@@ -13,5 +13,5 @@ for filepath in glob.glob('**/*.js', recursive=True):
 
         with open(filepath, "r") as file:
             for line in file:
-                stripped_line = line.strip()
-                a.write(stripped_line + "\n")
+                #stripped_line = line.strip()
+                a.write(line + "\n")
