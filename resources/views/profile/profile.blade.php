@@ -45,46 +45,62 @@
         <div class="divider"></div>
         <div class="surveys-container">
             <h1>Your Surveys</h1>
+
             @foreach ($surveys as $survey)
             <button data-text-swap="{{$survey->survey_title}}  ▼ " data-text-original="{{$survey->survey_title}} ▶ "
-                onclick="myFunction('{{$survey->id}}')" id="button" name="button"
+                onclick="myFunction('{{$survey->id}}')" id="button{{$survey->id}}" name="button"
                 class="g-button block bl">{{$survey->survey_title}} ▶ </button>
             <div id="{{$survey->id}}" class="hide accordion-container">
-                <ul>
+                <div class="response-count" style="float:left;">
+                    <p>{{$responses_count[$survey->id]}}</p>
+                    <p>Responses</p>
+                </div>
+                <div class="survey_description" style="float:right;">
                     <p>{{$survey->survey_description}}</p>
-                    <a href="{{route('surveys.show',  $survey->id)}}"> <button class="btn-primary" style="width:85%;">
-                            View
-                            Data </button></a>
-                    <a href="{{route('surveys.destroy',  $survey->id)}}"> <button class="btn-danger" style="width:14%;">
-                            Delete
-                        </button></a>
-                </ul>
+                </div>
+
+
+                <a href="{{route('surveys.show',  $survey->id)}}" style="min-width:75%; margin:10px;"> <button
+                        class="btn-primary" style="width:100%;">
+                        View
+                        Data </button></a>
+                <a href="{{route('surveys.destroy',  $survey->id)}}" style="min-width:20%;margin:10px;"> <button
+                        class="btn-danger" style="width:100%">
+                        Delete
+                    </button></a>
             </div>
             @endforeach
 
 
+
         </div>
     </div>
-
 </section>
 <script>
     function myFunction(id) {
         var x = document.getElementById(id);
-        if (x.className.indexOf("accordion-show") == -1) {
-            x.className += " accordion-show";
+        if (x.className.indexOf("accordion-show-profile") == -1) {
+            x.className += " accordion-show-profile";
             x.previousElementSibling.className =
                 x.previousElementSibling.className.replace("black", "accordion-active");
         } else {
-            x.className = x.className.replace(" accordion-show", "");
+            x.className = x.className.replace(" accordion-show-profile", "");
             x.previousElementSibling.className =
                 x.previousElementSibling.className.replace("accordion-active", "black");
         }
     }
-    $("#button").on("click", function() {
+
+</script>
+@foreach ($surveys as $survey)
+<script>
+    $("#button{{$survey->id}}").on("click", function() {
   var el = $(this);
   el.text() == el.data("text-swap")
     ? el.text(el.data("text-original"))
     : el.text(el.data("text-swap"));
 });
+
+
 </script>
+@endforeach
 @endsection

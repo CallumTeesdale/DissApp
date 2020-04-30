@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use App\Survey;
+use App\Response;
 use App\User;
 use App\ContractInteractions;
 
@@ -40,7 +41,13 @@ class ProfileController extends Controller
         $contract = new ContractInteractions();
         $balance = $contract->contractGetBalance(Auth::user()->public_key);
         $surveys = Survey::where('user_id', Auth::id())->get()->sortByDesc('created_at');
-        return response()->view('profile.profile', ['surveys' => $surveys, 'balance' => $balance], 200);
+        $responses_count = [];
+
+        foreach ($surveys as $surv) {
+            $responses_count[$surv->id] = count(Response::where('survey_id', $surv->id)->get());
+        }
+
+        return response()->view('profile.profile', ['surveys' => $surveys, 'balance' => $balance, 'responses_count' => $responses_count], 200);
     }
 
     /**
