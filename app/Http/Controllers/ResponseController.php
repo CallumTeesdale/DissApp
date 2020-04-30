@@ -49,7 +49,7 @@ class ResponseController extends Controller
          * * Set the contract owner and decode the json from the ajax submission
          */
 
-        $contractOwner = '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1';
+        $contractOwner = \env("CONTRACT_OWNER");
         $data = $request->getContent();
         $decode = \json_decode($data, true);
         $userData = \json_encode($decode['userData']);

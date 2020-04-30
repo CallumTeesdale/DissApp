@@ -50,12 +50,14 @@
             <button type="submit" class="register">
                 {{__('update') }}
             </button>
+            <br>
             <a href="" class="form-text text-muted">Download User Data </a>
 
         </form>
+        <br>
         <form action="{{ route('profile.delete', Auth::id())}}" method="POST">
             @csrf
-            <button type="submit" class="register">
+            <button type="submit" class="btn-danger">
                 {{__('Delete Account') }}
             </button>
         </form>

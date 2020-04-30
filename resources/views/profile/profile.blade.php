@@ -7,6 +7,7 @@
 // $interval = $now->diff($date);
 
 ?>
+<script src="/js/jquery.min.js"></script>
 <!-- Login form-->
 <section class="account-view-wrap">
     <div class="profile-container">
@@ -45,12 +46,18 @@
         <div class="surveys-container">
             <h1>Your Surveys</h1>
             @foreach ($surveys as $survey)
-            <button onclick="myFunction('{{$survey->id}}')" class="g-button block bl">{{$survey->survey_title}}</button>
+            <button data-text-swap="{{$survey->survey_title}}  ▼ " data-text-original="{{$survey->survey_title}} ▶ "
+                onclick="myFunction('{{$survey->id}}')" id="button" name="button"
+                class="g-button block bl">{{$survey->survey_title}} ▶ </button>
             <div id="{{$survey->id}}" class="hide accordion-container">
                 <ul>
                     <p>{{$survey->survey_description}}</p>
-                    <a class="link" href="{{route('surveys.show',  $survey->id)}}"> View Data</a>
-                    <a class="link" href="{{route('surveys.destroy',  $survey->id)}}"> Delete</a>
+                    <a href="{{route('surveys.show',  $survey->id)}}"> <button class="btn-primary" style="width:85%;">
+                            View
+                            Data </button></a>
+                    <a href="{{route('surveys.destroy',  $survey->id)}}"> <button class="btn-danger" style="width:14%;">
+                            Delete
+                        </button></a>
                 </ul>
             </div>
             @endforeach
@@ -73,5 +80,11 @@
                 x.previousElementSibling.className.replace("accordion-active", "black");
         }
     }
+    $("#button").on("click", function() {
+  var el = $(this);
+  el.text() == el.data("text-swap")
+    ? el.text(el.data("text-original"))
+    : el.text(el.data("text-swap"));
+});
 </script>
 @endsection
