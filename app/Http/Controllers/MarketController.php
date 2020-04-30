@@ -16,15 +16,15 @@ use App\Barcode;
 use Illuminate\View\View;
 use function array_push;
 
-/**
- * Class MarketController
- * @package App\Http\Controllers
- */
 class MarketController extends Controller
 {
+<<<<<<< HEAD
     /**
      * @return Factory|View
      */
+=======
+    //
+>>>>>>> parent of dcfb3a9... More phpdocs
     public function index()
     {
         $variables = [];
@@ -51,10 +51,13 @@ class MarketController extends Controller
         return view('market.market-password-confirm', ['id' => $id]);
     }
 
+<<<<<<< HEAD
     /**
      * @param Request $request
      * @return Factory|View
      */
+=======
+>>>>>>> parent of dcfb3a9... More phpdocs
     public function buyItem(Request $request)
     {
         /**
@@ -114,14 +117,14 @@ class MarketController extends Controller
                      * * Error in the processing of the transfer
                      */
                     $message = 'Error processing purchase, you have not been charged.';
-                    return view('generic-message-view', ['message' => $message, 'title' => 'Something went wrong']);
+                    return view('generic-message-view', ['message' => $e, 'title' => 'Something went wrong']);
                 }
             }
             //@codeCoverageIgnoreStop
             else {
 
                 /**
-                 * * Error in validating that the user has enough funds
+                 * * Error in validating that the user has enoug funds
                  */
                 return view('generic-message-view', ['message' => 'Not enough funds', 'title', 'Something went wrong']);
             }

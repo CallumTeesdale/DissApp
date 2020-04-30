@@ -14,10 +14,6 @@ use App\ContractInteractions;
 use function redirect;
 
 
-/**
- * Class ProfileController
- * @package App\Http\Controllers
- */
 class ProfileController extends Controller
 {
     /**

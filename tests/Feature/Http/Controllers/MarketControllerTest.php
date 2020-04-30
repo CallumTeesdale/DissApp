@@ -64,6 +64,7 @@ class MarketControllerTest extends TestCase
      */
     public function buy_item_returns_error_purchase()
     {
+<<<<<<< HEAD
         $this->withoutExceptionHandling();
         $barcode = factory(\App\Barcode::class)->create([
             'market_id' => 1
@@ -71,6 +72,9 @@ class MarketControllerTest extends TestCase
         $user = factory(\App\User::class)->create([
             'password' => 'asdasdasd',
         ]);
+=======
+        $user = factory(\App\User::class)->create();
+>>>>>>> parent of dcfb3a9... More phpdocs
         $item = factory(\App\Market::class)->create([
             'id' => 1,
         ]);

@@ -13,10 +13,6 @@ use Exception;
 use function json_decode;
 use function json_encode;
 
-/**
- * Class ResponseController
- * @package App\Http\Controllers
- */
 class ResponseController extends Controller
 {
     /**

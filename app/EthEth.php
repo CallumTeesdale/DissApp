@@ -59,8 +59,8 @@ class EthEth
                 }
                 //@codeCoverageIgnoreStop
                 echo 'Tx hash: ' . $transaction . PHP_EOL;
+                $AccountsEth->lockAccount($fromAccount);
             }
         );
-        $AccountsEth->lockAccount($fromAccount);
     }
 }
