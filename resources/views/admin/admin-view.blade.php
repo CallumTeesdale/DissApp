@@ -7,7 +7,9 @@
             <div class="profile-data">
                 <h1>menu</h1>
                 <a class="link" href="{{route('admin.get.market')}}">View market Items</a>
+                <a class="link" href="{{route('admin.market.create.item')}}">Create market Item</a>
                 <a class="link" href="{{route('admin.get.categories')}}">View categories</a>
+                <a class="link" href="{{route('admin.create.category')}}">Create category</a>
             </div>
         </div>
         <div class="divider"></div>

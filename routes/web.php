@@ -116,6 +116,9 @@ Route::get('/admin/categories', 'AdminController@getCategoriesAll')
 Route::get('/admin/categories/edit/{id}', 'AdminController@editCategory')
     ->name('admin.edit.category')
     ->middleware('auth');
+Route::get('/admin/categories/create', 'AdminController@createCategory')
+    ->name('admin.create.category')
+    ->middleware('auth');
 Route::post('/admin/category/save', 'AdminController@postCategory')
     ->name('admin.category.post')
     ->middleware('auth');

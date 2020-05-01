@@ -35,7 +35,6 @@
                 <ul>
                     <li><a href="/">HOME</a></li>
                     <li><a href="{{ route('about') }}">ABOUT</a></li>
-                    <li> <a href="{{ route('contact') }}">CONTACT</a></li>
                     @if (Route::has('login'))
                     @auth
                     <li> <a href="{{ route('market') }}">MARKET</a></li>

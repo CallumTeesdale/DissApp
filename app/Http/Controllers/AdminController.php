@@ -213,6 +213,17 @@ class AdminController extends Controller
         $category = Category::where('id', $id)->get()->first();
         return view('admin.category-form', ['category' => $category]);
     }
+    /**
+     * * Display the category item creation form
+     */
+    public function createCategory()
+    {
+        if (Auth::user()->priv_level !== 1) {
+            $message = 'You are not authorised';
+            return view('generic-message-view', ['message' => $message]);
+        }
+        return view('admin.category-form');
+    }
 
     /**
      * * Save the category
